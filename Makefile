@@ -5,10 +5,14 @@ all:
 # QA
 
 cs: ## Check PHP files coding style
+	mkdir -p var/build-tools/PHP_CodeSniffer
 	"vendor/bin/phpcs" app --standard=build/phpcs.xml $(ARGS)
 
 csf: ## Fix PHP files coding style
+	mkdir -p var/build-tools/PHP_CodeSniffer
 	"vendor/bin/phpcbf" app --standard=build/phpcs.xml $(ARGS)
 
 phpstan: ## Analyse code with PHPStan
+	mkdir -p var/build-tools
 	"vendor/bin/phpstan" analyse app -c build/phpstan.src.neon $(ARGS)
+
