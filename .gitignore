@@ -1,6 +1,5 @@
 .idea
 vendor
-/modules
 node_modules
 temp/*
 log/*
