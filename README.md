@@ -1,13 +1,8 @@
-# Skeleton website
+# Skeleton website (template)
 
 Starter package for building websites on top of K2D.CZ CMS
 
-- **Clone** this repository
-- **Change origin** of this repository to yours:
-	- `$ git  remote  rm  origin`
-	- `$ git  remote  add  origin  git@github.com:your/repository.git`
-	- `$  git  config  master.remote  origin`
-	- `$  git  config  master.merge  refs/heads/master`
+- Create your own repository from this one by clicking **Use this template** green button
 - Install **Composer** dependencies - `$ composer install`
 - Install **NPM** dependencies - `$ npm install`
 - Build front-end **assets**:
