@@ -11,3 +11,8 @@ Starter package for building websites on top of K2D.CZ CMS
 - **Create file** `app/config/server/local.neon` from `app/config/server/local.template.neon` and **configure database connection**
 - **Run** `$ php bin/console migration:continue`
 - **Enjoy**
+
+For github actions: (phpstan and codesniffer)
+- rename `.github/workflows-inactive` to `.github/workflows`
+- ensure in `.github/workflows/ci.yaml` option `on > push > branches` is set to correct branch
+- setup Github secret `SSH_PRIVATE_KEY` with your Github private key, so the build can install private packages
