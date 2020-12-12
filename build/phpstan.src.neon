@@ -4,10 +4,3 @@ includes:
 parameters:
 	level: max
 	resultCachePath: %currentWorkingDirectory%/var/build-tools/PHPStan/resultCache.src.php
-
-	ignoreErrors:
-		- '#(.+)\|false given\.$#'
-		- '#^Cannot access property (.+) on (.*)Nette\\Database\\Table\\ActiveRow(.+)#'
-		- '#^Cannot call method (setFile|render)\(\) on Nette\\Application\\UI\\ITemplate\|stdClass\.$#'
-		# Mising parent typehint
-		- '#Parameter \#2 \$filters \(array\<string, string\>\) of method (.+)Grid\:\:processFilters\(\) should be contravariant with parameter \$filters \(array\) of method (.+)BaseGrid\:\:processFilters\(\)#'
