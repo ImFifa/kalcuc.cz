@@ -8,7 +8,7 @@ application:
 		*: App\*Module\Presenters\*Presenter
 
 services:
-	router: App\RouterFactory::createRouter(@repository, @Nette\Http\IRequest)
+	router: App\RouterFactory::createRouter()
 
 parameters:
 	customTemplatesDir: %appDir%/FrontModule/templates/
