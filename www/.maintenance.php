@@ -5,68 +5,25 @@ header('Retry-After: 300'); // 5 minutes in seconds
 
 ?>
 	<!DOCTYPE html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="robots" content="noindex">
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
+	<meta name="generator" content="Nette Framework">
 
-		<meta name="generator" content="K2D.CZ CMS">
-		<meta name="author" content="K2D.CZ">
+	<style>
+		body { color: #333; background: white; width: 500px; margin: 100px auto }
+		h1 { font: bold 47px/1.5 sans-serif; margin: .6em 0 }
+		p { font: 21px/1.5 Georgia,serif; margin: 1.5em 0 }
+	</style>
 
-		<title>Aktualizace</title>
+	<title>Aktualizace</title>
 
-		<link rel="stylesheet" href="/dist/front.bundle.css" type="text/css">
+	<h1>Omlouváme se</h1>
 
-		<style>
-			html,
-			body {
-				height: 100%;
-			}
+	<p>
+		Právě aktualizujeme webovou prezentaci.
+		<br />Děkujeme za pochopení.
+	</p>
 
-			body {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-
-			.content {
-				text-align: center;
-				padding: 3rem;
-			}
-
-			.content img {
-				height: 50px;
-			}
-		</style>
-	</head>
-	<body>
-	<div class="background">
-		<div class="overlay"></div>
-
-		<?php if (strpos($_SERVER['HTTP_HOST'], 'box') === false) { ?>
-			<div class="img" style="background-image: url('/dist/img/bg.jpg'); background-size: cover;"></div>
-		<?php } else { ?>
-			<div class="img" style="background-image: url('/upload/show/2/bg.jpg'); background-size: cover;"></div>
-		<?php } ?>
-
-	</div>
-
-	<div class="content">
-
-		<?php if (strpos($_SERVER['HTTP_HOST'], 'box') === false) { ?>
-			<img src="/dist/img/logo_white.svg" alt="Livesignal.tv - Logo">
-		<?php } else { ?>
-			<img src="/upload/show/2/logo_nobrand.png" alt="BOXING LUCERNA - Logo">
-		<?php } ?>
-
-		<h1 class="my-5">Omlouváme se</h1>
-		<p>
-			Právě aktualizujeme webovou aplikaci a proto není dostupná.<br />
-			Zkuste to znovu za několik minut.<br />
-			Děkujeme za pochopení.
-		</p>
-	</div>
-	</body>
 <?php
 
 exit;
