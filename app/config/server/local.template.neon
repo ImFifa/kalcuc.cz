@@ -3,15 +3,23 @@ application:
 
 database:
 	dsn: 'mysql:host=127.0.0.1;dbname='
-	user: root
+	user:
 	password:
 
-mail:
-	smtp: true
-	host:
+dbal:
+	driver: mysqli
+	host: 127.0.0.1
+	database:
 	username:
 	password:
-	secure: ssl
+	connectionTz: 'auto-offset'
+
+#mail:
+#	smtp: true
+#	host:
+#	username: %email.user%
+#	password:
+#	secure: ssl
 
 parameters:
 	email:

@@ -9,7 +9,7 @@ Starter package for building websites on top of K2D.CZ CMS
 - Build front-end **assets**:
 	- Development: `npm run start` or `npm run watch`
 	- Production: `npm run build`
-- **Create file** `app/config/server/local.neon` from `app/config/server/local.template.neon` and **configure database connection**
+- **Create file** `app/config/server/local.neon` from `app/config/server/local.template.neon` and **configure database and dbal**
 - **Run** `$ bin/console migration:continue`
 - **Enjoy**
 
