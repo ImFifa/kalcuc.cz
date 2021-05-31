@@ -33,7 +33,7 @@
 		"tracy/tracy": "^2.7.6"
 	},
 	"require-dev": {
-		"orisai/coding-standard": "^1.0.0",
+		"orisai/coding-standard": "^2.1.0",
 		"phpstan/extension-installer": "^1.0.0",
 		"phpstan/phpstan": "^0.12.0",
 		"phpstan/phpstan-deprecation-rules": "^0.12.0",

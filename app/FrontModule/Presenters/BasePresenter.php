@@ -5,6 +5,7 @@ namespace App\FrontModule\Presenters;
 use K2D\Box\Component\BoxComponent\BoxComponent;
 use K2D\Box\Component\BoxComponent\BoxComponentFactory;
 use K2D\Core\Presenter\FrontBasePresenter;
+use Nette\HtmlStringable;
 use stdClass;
 
 abstract class BasePresenter extends FrontBasePresenter
@@ -13,6 +14,9 @@ abstract class BasePresenter extends FrontBasePresenter
 	/** @inject */
 	public BoxComponentFactory $boxFactory;
 
+	/**
+	 * @param HtmlStringable|stdClass|string $message
+	 */
 	public function flashMessage($message, string $type = 'success'): stdClass
 	{
 		return parent::flashMessage($message, $type);

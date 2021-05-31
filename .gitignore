@@ -1,10 +1,20 @@
-.idea
-vendor
-node_modules
-temp/*
-log/*
-app/config/server/local.neon
-app/config/google_service_account.json
-www/upload/*
-www/dist/*
-/resources
+# IDE
+/.idea
+
+# Packages
+/node_modules
+/vendor
+
+# Data
+/www/upload/*
+
+# Generated
+/www/dist/*
+/var
+/temp/*
+/log/*
+
+# Local
+/app/config/server/local.neon
+/app/config/google_service_account.json
+/.env
