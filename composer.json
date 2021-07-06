@@ -1,6 +1,6 @@
 {
-	"name": "k2d/project-skeleton",
-	"description": "Project template",
+	"name": "k2d.cz/project-skeleton",
+	"description": "Project skeleton template",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"repositories": [
