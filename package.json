@@ -21,8 +21,6 @@
     "cropperjs": "^1.5.5",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
-    "datatables": "^1.10.18",
-    "datatables.net-bs4": "^1.10.19",
     "dropzone": "^5.7.0",
     "eslint": "^5.15.3",
     "file-loader": "^2.0.0",
