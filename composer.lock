@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "brick/date-time",
-            "version": "0.3.0",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/date-time.git",
-                "reference": "001076f652f7a237330a5ada7d61acd42fedb735"
+                "reference": "b4e45bf9dc37f03a12c41b5446474a07c5fc7f39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/date-time/zipball/001076f652f7a237330a5ada7d61acd42fedb735",
-                "reference": "001076f652f7a237330a5ada7d61acd42fedb735",
+                "url": "https://api.github.com/repos/brick/date-time/zipball/b4e45bf9dc37f03a12c41b5446474a07c5fc7f39",
+                "reference": "b4e45bf9dc37f03a12c41b5446474a07c5fc7f39",
                 "shasum": ""
             },
             "require": {
@@ -51,7 +51,7 @@
             ],
             "support": {
                 "issues": "https://github.com/brick/date-time/issues",
-                "source": "https://github.com/brick/date-time/tree/0.3.0"
+                "source": "https://github.com/brick/date-time/tree/0.3.2"
             },
             "funding": [
                 {
@@ -59,7 +59,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-15T22:02:20+00:00"
+            "time": "2021-06-30T17:11:38+00:00"
         },
         {
             "name": "contributte/console",
@@ -1233,16 +1233,16 @@
         },
         {
             "name": "nette/php-generator",
-            "version": "v3.5.3",
+            "version": "v3.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/php-generator.git",
-                "reference": "119f01a7bd590469cb01b538f20a125a28853626"
+                "reference": "59bb35ed6e8da95854fbf7b7d47dce6156b42915"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/php-generator/zipball/119f01a7bd590469cb01b538f20a125a28853626",
-                "reference": "119f01a7bd590469cb01b538f20a125a28853626",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/59bb35ed6e8da95854fbf7b7d47dce6156b42915",
+                "reference": "59bb35ed6e8da95854fbf7b7d47dce6156b42915",
                 "shasum": ""
             },
             "require": {
@@ -1285,7 +1285,7 @@
                     "homepage": "https://nette.org/contributors"
                 }
             ],
-            "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 7.4 features.",
+            "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 8.0 features.",
             "homepage": "https://nette.org",
             "keywords": [
                 "code",
@@ -1295,9 +1295,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/php-generator/issues",
-                "source": "https://github.com/nette/php-generator/tree/v3.5.3"
+                "source": "https://github.com/nette/php-generator/tree/v3.5.4"
             },
-            "time": "2021-02-24T18:40:21+00:00"
+            "time": "2021-07-05T12:02:42+00:00"
         },
         {
             "name": "nette/robot-loader",
@@ -2141,12 +2141,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/orisai/nette-di.git",
-                "reference": "660f3611e8228b6b74bb2a3a7639381c870f24a6"
+                "reference": "2b7e18d84c3a6e54227b277e7148027dd6301260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orisai/nette-di/zipball/660f3611e8228b6b74bb2a3a7639381c870f24a6",
-                "reference": "660f3611e8228b6b74bb2a3a7639381c870f24a6",
+                "url": "https://api.github.com/repos/orisai/nette-di/zipball/2b7e18d84c3a6e54227b277e7148027dd6301260",
+                "reference": "2b7e18d84c3a6e54227b277e7148027dd6301260",
                 "shasum": ""
             },
             "require": {
@@ -2205,7 +2205,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-06T10:26:06+00:00"
+            "time": "2021-06-23T13:38:30+00:00"
         },
         {
             "name": "orisai/utils",
@@ -2355,7 +2355,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:K2D-CZ/core.git",
-                "reference": "c45690ff5e387caf8e6ede224d672f8cfee98007"
+                "reference": "0730e23f09c00746f844ca7b1b67a498dd401b0b"
             },
             "require": {
                 "contributte/console": "^0.8.0|^0.9.0",
@@ -2384,7 +2384,7 @@
                 "cms",
                 "nette"
             ],
-            "time": "2021-06-09T21:32:59+00:00"
+            "time": "2021-07-04T18:42:44+00:00"
         },
         {
             "name": "simple-cms/file-module",
@@ -2392,7 +2392,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:K2D-CZ/file.git",
-                "reference": "886007e6dc53549bf5378e690f54782f7407b371"
+                "reference": "1ddf591c9ad9434d8738903bbb825cbfdceda8fa"
             },
             "require": {
                 "php": ">= 7.4"
@@ -2411,20 +2411,20 @@
                 "cms",
                 "nette"
             ],
-            "time": "2021-02-24T15:23:23+00:00"
+            "time": "2021-07-04T18:42:02+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v5.3.0",
+            "version": "v5.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "058553870f7809087fa80fa734704a21b9bcaeb2"
+                "reference": "649730483885ff2ca99ca0560ef0e5f6b03f2ac1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/058553870f7809087fa80fa734704a21b9bcaeb2",
-                "reference": "058553870f7809087fa80fa734704a21b9bcaeb2",
+                "url": "https://api.github.com/repos/symfony/console/zipball/649730483885ff2ca99ca0560ef0e5f6b03f2ac1",
+                "reference": "649730483885ff2ca99ca0560ef0e5f6b03f2ac1",
                 "shasum": ""
             },
             "require": {
@@ -2493,7 +2493,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v5.3.0"
+                "source": "https://github.com/symfony/console/tree/v5.3.2"
             },
             "funding": [
                 {
@@ -2509,7 +2509,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T17:43:10+00:00"
+            "time": "2021-06-12T09:42:48+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3215,16 +3215,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.3.0",
+            "version": "v5.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "a9a0f8b6aafc5d2d1c116dcccd1573a95153515b"
+                "reference": "bd53358e3eccec6a670b5f33ab680d8dbe1d4ae1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/a9a0f8b6aafc5d2d1c116dcccd1573a95153515b",
-                "reference": "a9a0f8b6aafc5d2d1c116dcccd1573a95153515b",
+                "url": "https://api.github.com/repos/symfony/string/zipball/bd53358e3eccec6a670b5f33ab680d8dbe1d4ae1",
+                "reference": "bd53358e3eccec6a670b5f33ab680d8dbe1d4ae1",
                 "shasum": ""
             },
             "require": {
@@ -3278,7 +3278,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.3.0"
+                "source": "https://github.com/symfony/string/tree/v5.3.3"
             },
             "funding": [
                 {
@@ -3294,7 +3294,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T17:43:10+00:00"
+            "time": "2021-06-27T11:44:38+00:00"
         },
         {
             "name": "tracy/tracy",
@@ -3650,16 +3650,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.89",
+            "version": "0.12.91",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "54c0f5a6c30511b77128d58b6369f718df250542"
+                "reference": "8226701cd228a0d63c2df995de7ab6070c69ac6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/54c0f5a6c30511b77128d58b6369f718df250542",
-                "reference": "54c0f5a6c30511b77128d58b6369f718df250542",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8226701cd228a0d63c2df995de7ab6070c69ac6a",
+                "reference": "8226701cd228a0d63c2df995de7ab6070c69ac6a",
                 "shasum": ""
             },
             "require": {
@@ -3690,7 +3690,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.89"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.91"
             },
             "funding": [
                 {
@@ -3710,7 +3710,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-09T20:23:49+00:00"
+            "time": "2021-07-04T15:31:48+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -3828,16 +3828,16 @@
         },
         {
             "name": "phpstan/phpstan-strict-rules",
-            "version": "0.12.9",
+            "version": "0.12.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-strict-rules.git",
-                "reference": "0705fefc7c9168529fd130e341428f5f10f4f01d"
+                "reference": "ce82a050f9da4a32e438272907e38cdd04806223"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/0705fefc7c9168529fd130e341428f5f10f4f01d",
-                "reference": "0705fefc7c9168529fd130e341428f5f10f4f01d",
+                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/ce82a050f9da4a32e438272907e38cdd04806223",
+                "reference": "ce82a050f9da4a32e438272907e38cdd04806223",
                 "shasum": ""
             },
             "require": {
@@ -3845,10 +3845,9 @@
                 "phpstan/phpstan": "^0.12.66"
             },
             "require-dev": {
-                "phing/phing": "^2.16.3",
                 "php-parallel-lint/php-parallel-lint": "^1.2",
                 "phpstan/phpstan-phpunit": "^0.12.16",
-                "phpunit/phpunit": "^7.5.20"
+                "phpunit/phpunit": "^9.5"
             },
             "type": "phpstan-extension",
             "extra": {
@@ -3873,9 +3872,9 @@
             "description": "Extra strict and opinionated rules for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-strict-rules/issues",
-                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/0.12.9"
+                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/0.12.10"
             },
-            "time": "2021-01-13T08:50:28+00:00"
+            "time": "2021-07-04T14:57:39+00:00"
         },
         {
             "name": "slevomat/coding-standard",
