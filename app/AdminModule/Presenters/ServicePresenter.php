@@ -1,0 +1,175 @@
+<?php
+
+namespace App\AdminModule\Presenters;
+
+use App\AdminModule\Grid\ServiceGridFactory;
+use App\AdminModule\Grid\ServiceGrid;
+use App\Model\ServiceModel;
+use K2D\Core\AdminModule\Component\CropperComponent\CropperComponent;
+use K2D\Core\AdminModule\Component\CropperComponent\CropperComponentFactory;
+use K2D\Core\AdminModule\Presenter\BasePresenter;
+use K2D\Core\Helper\Helper;
+use K2D\File\AdminModule\Component\DropzoneComponent\DropzoneComponent;
+use K2D\File\AdminModule\Component\DropzoneComponent\DropzoneComponentFactory;
+use Nette\Application\UI\Form;
+use Nette\Database\Table\ActiveRow;
+use Nette\Http\FileUpload;
+use Nette\Utils\DateTime;
+use Nette\Utils\Strings;
+
+
+/**
+ * @property-read ActiveRow|null $service
+ */
+class ServicePresenter extends BasePresenter
+{
+	/** @inject */
+	public ServiceModel $serviceModel;
+
+	/** @var ServiceGridFactory @inject */
+	public $serviceGridFactory;
+
+	/** @inject */
+	public DropzoneComponentFactory $dropzoneComponentFactory;
+
+	/** @inject */
+	public CropperComponentFactory $cropperComponentFactory;
+
+	public function renderEdit(?int $id = null): void
+	{
+		$this->template->service = null;
+
+		if ($id !== null && $this->service !== null) {
+			$service = $this->service->toArray();
+
+			$form = $this['editForm'];
+			$form->setDefaults($service);
+
+			$this->template->service = $this->service;
+		}
+	}
+
+	public function createComponentEditForm(): Form
+	{
+		$form = new Form();
+
+		$form->addText('name', 'Název:')
+			->addRule(Form::MAX_LENGTH, 'Maximálné délka je %s znaků', 50)
+			->setRequired('Název služby je povinný');
+
+		$form->addCheckbox('public', 'Zveřejnit')
+			->setDefaultValue(true);
+
+		$form->addSelect('gallery_id', 'Připojit galerii:')
+			->setPrompt('Žádná')
+			->setItems($this->galleries->getForSelect());
+
+		$form->addTextArea('description', 'Popis', 100, 10)
+			->setHtmlAttribute('class', 'form-wysiwyg');
+
+		$form->addSubmit('save', 'Uložit');
+
+		$form->onSubmit[] = function (Form $form) {
+			$values = $form->getValues(true);
+			$values['slug'] = Strings::webalize($values['name'] . '-' . $values['surname']);
+			$service = $this->service;
+
+			if ($service === null) {
+				$service = $this->serviceModel->insert($values);
+				$this->flashMessage('Služba vytvořena');
+			} else {
+				$service->update($values);
+				$this->flashMessage('Služba upravena');
+			}
+
+			$service->update([
+				'slug' => $service->id . '-' . $values['slug']
+			]);
+
+			$this->redirect('this', ['id' => $service->id]);
+		};
+
+		return $form;
+	}
+
+	public function handleUploadFiles(): void
+	{
+		$fileUploads = $this->getHttpRequest()->getFiles();
+		$fileUpload = reset($fileUploads);
+
+		if (!($fileUpload instanceof FileUpload)) {
+			return;
+		}
+
+		if ($fileUpload->isOk() && $fileUpload->isImage()) {
+			$image = $fileUpload->toImage();
+			$link = WWW . '/upload/services/' . $this->service->id . '/';
+			$fileName = Helper::generateFileName($fileUpload);
+
+			if (!file_exists($link)) {
+				Helper::mkdir($link);
+			}
+
+			if ($image->getHeight() > 600 || $image->getWidth() > 800) {
+				$image->resize(800, 600);
+			}
+
+			$image->save($link . $fileName);
+			$this->service->update(['profile' => $fileName]);
+		}
+	}
+
+	public function handleRedrawFiles(): void
+	{
+		$this->redirect('this');
+	}
+
+	public function handleCropImage(): void
+	{
+		$this->showModal('cropper');
+	}
+
+	public function handleDeleteImage(): void
+	{
+		unlink(WWW . '/upload/services/' . $this->service->id . '/' . $this->service->profile);
+		$this->service->update(['profile' => null]);
+		$this->flashMessage('Náhledový obrázek byl smazán');
+		$this->redirect('this');
+	}
+
+	protected function createComponentServiceGrid(): ServiceGrid
+	{
+		return $this->serviceGridFactory->create();
+	}
+
+	protected function createComponentDropzone(): DropzoneComponent
+	{
+		$control = $this->dropzoneComponentFactory->create();
+		$control->setPrompt('Nahrajte obrázek přetažením nebo kliknutím sem.');
+		$control->setUploadLink($this->link('uploadFiles!'));
+		$control->setRedrawLink($this->link('redrawFiles!'));
+
+		return $control;
+	}
+
+	protected function createComponentCropper(): CropperComponent
+	{
+		$cropper = $this->cropperComponentFactory->create();
+
+		if ($this->service->profile !== null) {
+			$cropper->setImagePath('upload/services/' . $this->service->id . '/' . $this->service->profile)
+				->setAspectRatio((float) 1);
+		}
+
+		$cropper->onCrop[] = function (): void {
+			$this->redirect('this');
+		};
+
+		return $cropper;
+	}
+
+	protected function getService(): ?ActiveRow
+	{
+		return $this->serviceModel->get($this->getParameter('id'));
+	}
+}

@@ -9,7 +9,18 @@ application:
 
 services:
 	router: App\RouterFactory::createRouter()
+	repository: App\Service\ProjectModelRepository
+	# Grids
+	- App\AdminModule\Grid\ServiceGridFactory
+	# Models
+	- App\Model\ServiceModel
+	- App\Model\PricingModel
 
 parameters:
 	customTemplatesDir: %appDir%/FrontModule/templates/
+	admin:
+		menu:
+			Služby: [':Admin:Service:', truck]
 
+extensions:
+    recaptcha: Contributte\ReCaptcha\DI\ReCaptchaExtension
