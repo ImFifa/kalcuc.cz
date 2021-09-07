@@ -62,8 +62,6 @@
 
 	<section class="calculator" id="cenova-kalkulacka">
 		<div class="container">
-			<h2>Cenová kalkulačka</h2>
-
 			<div class="modal" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
@@ -109,7 +107,10 @@
 				</div>
 			</div>
 
-			<div class="calculator-grid">
+			<div class="calculator-area">
+				<h2>Cenová kalkulačka</h2>
+				<p class="text-center m-auto pb-3 d-block">Tato jednoduchá cenová kalkulačka Vám pomůže s odhadem ceny za likvidaci odpadních vod.<br>Stačí zadat adresu nakládky a množství odpadních vod k likvidaci.</p>
+				<div class="calculator-grid">
 				{form calculator, class => 'row calculatorForm'}
 					<div class="col-lg-12">
 						<div class="form-group">
@@ -192,7 +193,7 @@
 						</div>
 					</div>
 					<div class="col-lg-12 submit-price">
-						<h5><i class="fa fa-calculator" aria-hidden="true"></i> Výsledná odhadovaná cena</h5>
+						<h5><i class="fa fa-calculator" aria-hidden="true"></i> Odhadovaná cena</h5>
 
 						<div class="input-group">
 							<div class="input-group-prepend">
@@ -208,7 +209,10 @@
 				{/form}
 
 				<div class="final-map" style="display: none" id="m"></div>
-				<div class="final-map" id="m2"></div>
+				<div class="final-map" id="m2">
+					<i class="fas fa-map-marked-alt"></i>
+				</div>
+			</div>
 			</div>
 		</div>
 	</section>
