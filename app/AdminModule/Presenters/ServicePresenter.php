@@ -11,6 +11,7 @@ use K2D\Core\AdminModule\Presenter\BasePresenter;
 use K2D\Core\Helper\Helper;
 use K2D\File\AdminModule\Component\DropzoneComponent\DropzoneComponent;
 use K2D\File\AdminModule\Component\DropzoneComponent\DropzoneComponentFactory;
+use K2D\Gallery\Models\GalleryModel;
 use Nette\Application\UI\Form;
 use Nette\Database\Table\ActiveRow;
 use Nette\Http\FileUpload;
@@ -25,6 +26,9 @@ class ServicePresenter extends BasePresenter
 {
 	/** @inject */
 	public ServiceModel $serviceModel;
+
+	/** @inject */
+	public GalleryModel $galleries;
 
 	/** @var ServiceGridFactory @inject */
 	public $serviceGridFactory;
@@ -71,7 +75,7 @@ class ServicePresenter extends BasePresenter
 
 		$form->onSubmit[] = function (Form $form) {
 			$values = $form->getValues(true);
-			$values['slug'] = Strings::webalize($values['name'] . '-' . $values['surname']);
+			$values['slug'] = Strings::webalize($values['name']);
 			$service = $this->service;
 
 			if ($service === null) {

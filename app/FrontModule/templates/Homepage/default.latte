@@ -28,36 +28,19 @@
 		<div class="container">
 			<h2>Nabízené služby</h2>
 			<ul>
-				<li>
-					<a n:href="Homepage:service cisteni-odpadnich-jimek">
-						<img src="{$basePath}/dist/img/cisteni-jimek.jpeg" alt="Čištění odpadních jímek">
-						<h3>Čištění odpadních jímek</h3>
-					</a>
-				</li>
-				<li>
-					<a n:href="Homepage:service tlakove-cisteni-kanalizaci">
-						<img src="{$basePath}/dist/img/cisteni-kanalizaci.jpeg" alt="Tlakové číštění kanalizací">
-						<h3>Tlakové číštění kanalizací</h3>
-					</a>
-				</li>
-				<li>
-					<a n:href="Homepage:service odcerpani-zatopenych-sklepu">
-						<img src="{$basePath}/dist/img/odcerpani-sklepu.jpeg" alt="Odčerpání zatopených sklepů">
-						<h3>Odčerpání zatopených sklepů</h3>
-					</a>
-				</li>
-				<li>
-					<a n:href="Homepage:service prohlidka-kanalizacniho-potrubi-kamerovym-systemem">
-						<img src="{$basePath}/dist/img/prohlidka-potrubi.jpeg" alt="Prohlídka kanalizačního potrubí kamerovým systémem">
-						<h3>Prohlídka kanalizačního potrubí kamerovým systémem</h3>
-					</a>
-				</li>
-				<li>
-					<a n:href="Homepage:service cisteni-potoku">
-						<img src="{$basePath}/dist/img/cisteni-potoku.jpeg" alt="Čištění potoků">
-						<h3>Čištění potoků</h3>
-					</a>
-				</li>
+				{foreach $services as $service}
+					<li>
+						<a n:href="Homepage:service $service->slug">
+							{if $service->cover}
+								<img src="{$basePath}/upload/services/{$service->id}/{$service->cover}" alt="{$service->name}">
+							{else}
+								<img src="{$basePath}/dist/img/no-cover.jpeg" alt="{$service->name}">
+							{/if}
+							<h3>{$service->name}</h3>
+						</a>
+					</li>
+				{/foreach}
+
 			</ul>
 		</div>
 	</section>
@@ -80,6 +63,153 @@
 	<section class="calculator" id="cenova-kalkulacka">
 		<div class="container">
 			<h2>Cenová kalkulačka</h2>
+
+			<div class="modal" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Výběr místa na mapě</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>Klikutím na mapu vyberte místo nakládky.</p>
+							<div id="mapa"></div>
+							<div class="form-group mt-4">
+								<label for="selectedPosition">Zvolené místo</label>
+								<input id="selectedPosition" name="selectedPosition" class="form-control" type="text" disabled>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="passAddress()">Zvolit místo</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal" id="showAddresses" tabindex="-1" aria-labelledby="showAddressesLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Vyberte z nabízených adres</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="selectAddress()">Potvrdit zvolenou adresu</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="calculator-grid">
+				{form calculator, class => 'row calculatorForm'}
+					<div class="col-lg-12">
+						<div class="form-group">
+							{label starting_position}{/label}
+							{input starting_position class => 'form-control', disabled => true}
+						</div>
+					</div>
+					<div class="col-lg-12 loading-input">
+						{label loading_position}{/label}
+						<div class="form-group">
+							<div class="input-group">
+								{input loading_position class => 'form-control required'}
+								<div class="input-group-append">
+									<button class="btn btn-sm btn-outline-dark" type="button" id="hledej">Hledej</button>
+								</div>
+							</div>
+							<button type="button" id="showMap" onclick="createMap()" class="btn btn-dark" data-toggle="modal" data-target="#mapModal">
+								<i class="fa fa-map-marker-alt" aria-hidden="true"></i> Nalézt na mapě
+							</button>
+						</div>
+						<div id="addressesList">
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							{label unloading_position}{/label}
+							{input unloading_position class => 'form-control', disabled => true}
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							{label ending_position}{/label}
+							{input ending_position class => 'form-control', disabled => true}
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							{label distance}{/label}
+							<div class="input-group">
+								{input distance class => 'form-control', disabled => true}
+								<div class="input-group-append">
+									<span class="input-group-text">km</span>
+								</div>
+							</div>
+							<small class="form-text text-muted">Cena je 40Kč/km. Vzdálenost se automaticky vypočítá po zadání místa nakládky.</small>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							{label transport_price}{/label}
+							<div class="input-group">
+								{input transport_price class => 'form-control', disabled => true}
+								<div class="input-group-append">
+									<span class="input-group-text">Kč</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							{label waste_amount}{/label}
+							<div class="input-group">
+								{input waste_amount class => 'form-control required'}
+								<div class="input-group-append">
+									<span class="input-group-text">m&sup3;</span>
+								</div>
+							</div>
+							<small class="form-text text-muted">Cena je 250Kč/m&sup3;</small>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							{label disposal_price}{/label}
+							<div class="input-group">
+								{input disposal_price class => 'form-control', disabled => true}
+								<div class="input-group-append">
+									<span class="input-group-text">Kč</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-12 submit-price">
+						<h5><i class="fa fa-calculator" aria-hidden="true"></i> Výsledná odhadovaná cena</h5>
+
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Od</span>
+							</div>
+							{input total_price class => 'form-control', disabled => true}
+							<div class="input-group-append">
+								<span class="input-group-text">Kč</span>
+							</div>
+						</div>
+						<small class="form-text text-muted">Celková cena závisí na náročnosti práce. Cena práce se pohybuje mezi 1000 - 2000 Kč za hodinu.</small>
+					</div>
+				{/form}
+
+				<div class="final-map" style="display: none" id="m"></div>
+				<div class="final-map" id="m2"></div>
+			</div>
 		</div>
 	</section>
 
@@ -126,74 +256,76 @@
 
 				<div class="contact-form">
 					<h3>Napište nám!</h3>
-				<!-- Modal -->
-				{foreach $flashes as $flash}
-					{if $flash->type === 'success'}
-						<div class="modal fade" id="registeredModal" tabindex="-1" role="dialog" aria-labelledby="registeredModalTitle" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 class="modal-title" id="registeredModalLongTitle">Odeslání emailu</h4>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										{$flash->message}
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+					<!-- Modal -->
+					{foreach $flashes as $flash}
+						{if $flash->type === 'success'}
+							<div class="modal fade" id="registeredModal" tabindex="-1" role="dialog" aria-labelledby="registeredModalTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title" id="registeredModalLongTitle">Odeslání emailu</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											{$flash->message}
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					{else}
-						<div class="alert alert-{$flash->type} alert-dismissible fade show" style="max-width: 600px" role="alert">
-							{$flash->message}
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-					{/if}
-				{/foreach}
+						{else}
+							<div class="alert alert-{$flash->type} alert-dismissible fade show" style="max-width: 600px" role="alert">
+								{$flash->message}
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						{/if}
+					{/foreach}
 
-				{form contactForm, class => 'contactForm row'}
-					<div class="col-lg-12">
-						<div class="form-group">
-							{label name}{/label}
-							{input name class => 'form-control, required'}
-						</div>
-					</div>
+					<div class="contactForm" n:snippet="contactForm">
+						{form contactForm, class => 'row'}
+							<div class="col-lg-12">
+								<div class="form-group">
+									{label name}{/label}
+									{input name class => 'form-control, required'}
+								</div>
+							</div>
 
-					<div class="col-lg-6">
-						<div class="form-group">
-							{label phone}{/label}
-							{input phone class => 'form-control, required'}
-						</div>
-					</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									{label phone}{/label}
+									{input phone class => 'form-control, required'}
+								</div>
+							</div>
 
-					<div class="col-lg-6">
-						<div class="form-group">
-							{label email}{/label}
-							{input email class => 'form-control, required'}
-						</div>
-					</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									{label email}{/label}
+									{input email class => 'form-control, required'}
+								</div>
+							</div>
 
-					<div class="col-lg-12">
-						<div class="form-group agree-checkbox">
-							{label message}{/label}
-							{input message class => 'form-control, required', rows => 5}
-						</div>
-					</div>
+							<div class="col-lg-12">
+								<div class="form-group agree-checkbox">
+									{label message}{/label}
+									{input message class => 'form-control, required', rows => 5}
+								</div>
+							</div>
 
-					<div class="col-lg-6">
-						<div class="form-group">
-							<button n:name="submit" class="btn btn-dark submit">
-								<i class="fa fa-paper-plane" aria-hidden="true"></i> Odeslat
-							</button>
-						</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									<button n:name="submit" class="btn btn-dark submit">
+										<i class="fa fa-paper-plane" aria-hidden="true"></i> Odeslat
+									</button>
+								</div>
+							</div>
+						{/form}
 					</div>
-				{/form}
 				</div>
 			</div>
 		</div>
@@ -203,4 +335,203 @@
 {block #scripts}
 	<script src="https://www.google.com/recaptcha/api.js?render=explicit"></script>
 	<script src="{$basePath}/scripts/invisibleRecaptcha.js"></script>
+	<script type="text/javascript">
+		const calculator = document.querySelector("#frm-calculator");
+		const hledej = document.querySelector("#hledej");
+
+		const selectedPosition = document.querySelector("#selectedPosition");
+		const loading_position = document.querySelector("#frm-calculator-loading_position");
+		const waste_amount = document.querySelector("#frm-calculator-waste_amount");
+
+		const disposal_price = document.querySelector("#frm-calculator-disposal_price");
+		const total_price = document.querySelector("#frm-calculator-total_price");
+		const transport_price = document.querySelector("#frm-calculator-transport_price");
+
+		let myCoords = null;
+		let dist = 0;
+
+		function createMap() {
+			setTimeout(function (){
+				var center = SMap.Coords.fromWGS84(13.5828909, 50.3234440);
+				var m = new SMap(JAK.gel("mapa"), center, 13);
+				m.addControl(new SMap.Control.Sync());
+				m.addDefaultLayer(SMap.DEF_BASE).enable();
+				m.addDefaultControls();
+				var mouse = new SMap.Control.Mouse(SMap.MOUSE_PAN | SMap.MOUSE_WHEEL | SMap.MOUSE_ZOOM); /* Ovládání myší */
+				m.addControl(mouse);
+
+				var obrazek = "https://api.mapy.cz/img/api/marker/drop-red.png";
+
+				var data = {
+					"Start/Cíl": "50°19'31.99\"N,13°35'5.97\"E"
+				}
+				var znacky = [];
+				var souradnice = [];
+
+				for (var name in data) { /* Vyrobit značky */
+					var c = SMap.Coords.fromWGS84(data[name]); /* Souřadnice značky, z textového formátu souřadnic */
+
+					var options = {
+						url:obrazek,
+						title:name,
+						anchor: { left:10, bottom: 1}  /* Ukotvení značky za bod uprostřed dole */
+					}
+
+					var znacka = new SMap.Marker(c, null, options);
+					souradnice.push(c);
+					znacky.push(znacka);
+				}
+
+				var vrstva = new SMap.Layer.Marker();     /* Vrstva se značkami */
+				m.addLayer(vrstva);                          /* Přidat ji do mapy */
+				vrstva.enable();                         /* A povolit */
+				for (var i=0;i<znacky.length;i++) {
+					vrstva.addMarker(znacky[i]);
+				}
+
+				var kliknuto = function(signal) {
+					var event = signal.data.event;
+					var coords = SMap.Coords.fromEvent(event, m);
+					new SMap.Geocoder.Reverse(coords, odpoved);
+					myCoords = coords.toWGS84();
+				}
+
+				var odpoved = function(geocoder) {
+					var results = geocoder.getResults();
+					selectedPosition.value = results.label;
+
+				}
+
+				var signals = m.getSignals();
+				signals.addListener(window, "map-click", kliknuto);
+			}, 200);
+		}
+		function passAddress() {
+			loading_position.value = selectedPosition.value;
+			renderMap();
+		}
+		function selectAddress() {
+			loading_position.value = selectedPosition.value;
+		}
+		function renderMap() {
+			if (myCoords) {
+				calculatePrice();
+
+				setTimeout(function () {
+					var centerMap = SMap.Coords.fromWGS84(14.40, 50.08);
+					var m2 = new SMap(JAK.gel("m2"), centerMap, 16);
+					var l = m2.addDefaultLayer(SMap.DEF_BASE).enable();
+					m2.addDefaultControls();
+
+
+					var nalezeno = function (route) {
+						var vrstva = new SMap.Layer.Geometry();
+						m2.addLayer(vrstva).enable();
+
+						var coords = route.getResults().geometry;
+						var cz = m2.computeCenterZoom(coords);
+						m2.setCenterZoom(cz[0], cz[1]);
+						var g = new SMap.Geometry(SMap.GEOMETRY_POLYLINE, null, coords);
+						vrstva.addGeometry(g);
+
+						//distance.value = Math.floor(route.getResults.length/1000) ;
+						dist = Math.floor(route.getResults().length / 1000);
+						calculatePrice();
+					}
+
+					var coords = [
+						SMap.Coords.fromWGS84(13.585058124884029, 50.3255879568764),
+						SMap.Coords.fromWGS84(myCoords[0], myCoords[1]),
+						SMap.Coords.fromWGS84(13.5542422, 50.3308148),
+						SMap.Coords.fromWGS84(13.585058124884029, 50.3255879568764),
+					];
+
+					// nove volani - staticka metoda, predame pole se souradnicemi a chceme vratit hlavne geometrii trasy
+					SMap.Route.route(coords, {
+						geometry: true
+					}).then(nalezeno);
+				}, 300);
+			}
+		}
+		function calculatePrice() {
+			// transport price
+			const distance = calculator.querySelector("#frm-calculator-distance");
+			let distance_v = parseInt(dist, 10);
+			distance.value = distance_v;
+			transport_price.value = 40 * distance_v;
+
+			// waste price
+			let waste_amount_v = parseInt(waste_amount.value, 10);
+			if (waste_amount_v >= 0) {
+				disposal_price.value = 250 * waste_amount_v;
+			}
+
+			// total price
+			total_price.value = (waste_amount_v * 250) + (distance_v * 40);
+
+		}
+
+		// vytvoreni mapy
+		var centerMap = SMap.Coords.fromWGS84(13.5828909, 50.3234440);
+		var m = new SMap(JAK.gel("m"), centerMap, 10);
+		var l = m.addDefaultLayer(SMap.DEF_BASE).enable();
+
+		// naseptavac
+		let suggest = new SMap.Suggest(loading_position, {
+			provider: new SMap.SuggestProvider({
+				updateParams: params => {
+					/*
+					  tato fce se vola pred kazdym zavolanim naseptavace,
+					params je objekt, staci prepsat/pridat klic a ten se prida
+					do url
+				  */
+					let c = m.getCenter().toWGS84();
+					params.lon = c[0].toFixed(5);
+					params.lat = c[1].toFixed(5);
+					params.zoom = m.getZoom();
+					// omezeni pro celou CR
+					params.bounds = "48.5370786,12.0921668|51.0746358,18.8927040";
+
+					// nepovolime kategorie, ale takto bychom mohli
+					//params.enableCategories = 1;
+
+					// priorita jazyku, oddelene carkou
+					params.lang = "cs,en";
+				}
+			})
+		});
+		suggest.addListener("suggest", suggestData => {
+			// vyber polozky z naseptavace
+			setTimeout(function () {
+				loading_position.value = suggestData.phrase;
+				myCoords = [suggestData.data.longitude, suggestData.data.latitude];
+				renderMap();
+			}, 0);
+		});
+
+		function geokoduj(e, elm) {  /* Voláno při odeslání */
+			JAK.Events.cancelDef(e); /* Zamezit odeslání formuláře */
+			var query = JAK.gel("frm-calculator-loading_position").value;
+			new SMap.Geocoder(query, odpoved);
+		}
+
+		function odpoved(geocoder) { /* Odpověď */
+			if (!geocoder.getResults()[0].results.length) {
+				alert("Zadanou adresu se nepodařilo nalézt na mapě.");
+				return;
+			}
+
+			var vysledky = geocoder.getResults()[0].results;
+
+			loading_position.value = vysledky[0].label;
+			myCoords = [vysledky[0].coords.x, vysledky[0].coords.y];
+			renderMap();
+		}
+
+		var form = JAK.gel("hledej");
+		JAK.Events.addListener(form, "click", geokoduj); /* Při odeslání formuláře pustit geokódování */
+
+		hledej.addEventListener("click", renderMap);
+		waste_amount.addEventListener("change", calculatePrice);
+	</script>
 {/block}

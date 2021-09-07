@@ -1,16 +1,16 @@
 {templateType K2D\Core\Template\BaseTemplate}
-{varType Nette\Database\Table\ActiveRow|null $member}
+{varType Nette\Database\Table\ActiveRow|null $service}
 
 {block #title}
-	{$member === null ? 'Přidání' : 'Úprava'} člena
+	{$service === null ? 'Přidání' : 'Úprava'} ceníkové položky
 {/block}
 
 {block #buttons}
 	<a href="#" class="btn btn-primary" onclick="triggerClick('.btn-save')">
 		Uložit
 	</a>
-	<a n:if="$member" n:href=":Front:Member:show $member->slug" class="btn btn-info" target="_blank">
-		Zobrazit profil na webu
+	<a n:if="$service" n:href=":Front:Homepage:service $service->slug" class="btn btn-info" target="_blank">
+		Zobrazit na webu
 	</a>
 	<a n:href="default" class="btn btn-light">
 		Zpět
@@ -18,7 +18,7 @@
 {/block}
 
 {block content}
-	<div n:if="$member && $member->profile" n:snippet="cropper" class="modal fade" tabindex="-1">
+	<div n:if="$service && $service->cover" n:snippet="cropper" class="modal fade" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
 				<div class="modal-body p-0">
@@ -35,37 +35,20 @@
 	<div class="container-fluid bg-white">
 		<div class="row">
 			<div class="col-lg-8">
-				{snippet profile}
+				{snippet cover}
 					{form editForm}
 						<div class="row">
-							<div class="col-lg-4">
+							<div class="col-lg-6">
 								<div class="form-group">
 									{label name}{/label}
                                     {input name class => 'form-control form-control-sm'}
 								</div>
 							</div>
-							<div class="col-lg-4">
+							<div class="col-lg-6">
 								<div class="form-group">
-									{label surname}{/label}
-                                    {input surname class => 'form-control form-control-sm'}
-								</div>
-							</div>
-							<div class="col-lg-4">
-								<div class="form-group">
-									{label birth_year}{/label}
-                                    {input birth_year class => 'form-control form-control-sm'}
-								</div>
-							</div>
-							<div class="col-lg-4">
-								<div class="form-group">
-									{label sport}{/label}
-                                    {input sport class => 'form-control form-control-sm'}
-								</div>
-							</div>
-							<div class="form-group d-flex align-items-end pb-1">
-								<div class="custom-control custom-checkbox">
-									<input n:name="public" class="custom-control-input">
-									<label n:name="public" class="custom-control-label">Zveřejnit</label>
+									{label gallery_id}{/label}
+                                    <small class="text-muted float-right">(nepovinné)</small>
+                                    {input gallery_id class => 'form-control form-control-sm'}
 								</div>
 							</div>
 							<div class="col-lg-12">
@@ -74,19 +57,27 @@
                                     {input description}
 								</div>
 							</div>
+							<div class="col-lg-2">
+								<div class="form-group">
+									<div class="custom-control custom-checkbox">
+										<input n:name="public" class="custom-control-input">
+										<label n:name="public" class="custom-control-label">Zveřejnit</label>
+									</div>
+								</div>
+							</div>
 						</div>
 						{input save class => 'btn-save d-none'}
 					{/form}
 				{/snippet}
 			</div>
-			<div class="col-lg-4" n:if="$member" n:snippet="image">
+			<div class="col-lg-4" n:if="$service" n:snippet="image">
 				<div class="mb-2">
-					Profilový obrázek
+					Náhledový obrázek
 				</div>
 				{control dropzone}
-                {if $member->profile}
-					<div class="position-relative" n:if="$member->profile">
-						<img src="{$basePath}/upload/members/{$member->id}/{$member->profile}" class="img-fluid" />
+                {if $service->cover}
+					<div class="position-relative" n:if="$service->cover">
+						<img src="{$basePath}/upload/services/{$service->id}/{$service->cover}?{filemtime(WWW . '/upload/services/' . $service->id . '/' . $service->cover)}" class="img-fluid" />
 						<div class="position-absolute" style="bottom: 0; width: 100%;">
 							<div class="text-center mb-3">
 								<a n:href="cropImage!" class="ajax btn btn-primary btn-sm">
@@ -109,7 +100,7 @@
 							<i class="mdi mdi-information"></i>
 						</div>
 						<div class="message">
-							Profilový obrázek není nahrán
+							Náhledový obrázek není nahrán
 						</div>
 					</div>
 				{/if}

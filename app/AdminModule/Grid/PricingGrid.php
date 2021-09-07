@@ -2,49 +2,43 @@
 
 namespace App\AdminModule\Grid;
 
-use App\Model\ServiceModel;
+use App\Model\PricingModel;
 use K2D\Core\AdminModule\Grid\BaseV2Grid;
 
 use Nette;
 use Nette\Database\Table\ActiveRow;
 use Nette\Forms\Container;
 
-class ServiceGrid extends BaseV2Grid
+class PricingGrid extends BaseV2Grid
 {
 
-	private ServiceModel $serviceModel;
+	private PricingModel $pricingModel;
 
-	public function __construct(ServiceModel $serviceModel)
+	public function __construct(PricingModel $pricingModel)
 	{
 		parent::__construct();
-		$this->serviceModel = $serviceModel;
+		$this->pricingModel = $pricingModel;
 	}
 
 	protected function build(): void
 	{
-		$this->model = $this->serviceModel;
+		$this->model = $this->pricingModel;
 
 		parent::build();
 
 		$this->setDefaultOrderBy('name', true);
 		$this->setFilterFactory([$this, 'gridFilterFactory']);
 
-		$this->addColumn('name', 'Název');
-		$this->addColumn('description', 'Popis');
-		$this->addColumn('gallery', 'Připojená galerie');
-		$this->addColumn('public', 'Veřejná');
+		$this->addColumn('name', 'Název služby');
+		$this->addColumn('price', 'Cena')->setSortable();;
 		$this->addColumn('updated', 'Poslední úprava')->setSortable();
 
 		$this->addRowAction('edit', 'Upravit', static function (): void {});
 		$this->addRowAction('delete', 'Smazat', static function (ActiveRow $record): void {
-			if ($record->profile) {
-				unlink(WWW . '/upload/services/' . $record->id . '/' . $record->profile);
-			}
-
 			$record->delete();
 		})
 			->setProtected(false)
-			->setConfirmation('Opravdu chcete smazat službu?');
+			->setConfirmation('Opravdu chcete smazat položku z ceníku?');
 	}
 
 	public function gridFilterFactory(Container $c): void

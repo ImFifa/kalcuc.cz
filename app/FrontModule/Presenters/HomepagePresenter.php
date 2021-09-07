@@ -3,20 +3,25 @@
 namespace App\FrontModule\Presenters;
 
 use App\Model\PricingModel;
-use Latte\Engine;
+use App\Model\ServiceModel;
+use K2D\Gallery\Models\ImageModel;
 use Nette\Application\UI\Form;
 use Nette\Database\DriverException;
 use Nette\Mail\DkimSigner;
 use Nette\Mail\Message;
 use Nette\Mail\SendmailMailer;
-use Nette\Mail\SmtpMailer;
-use Nette\Neon\Neon;
 
 class HomepagePresenter extends BasePresenter
 {
 
 	/** @inject */
 	public PricingModel $pricingModel;
+
+	/** @inject */
+	public ImageModel $imageModel;
+
+	/** @inject */
+	public ServiceModel $serviceModel;
 
 	public function beforeRender(): void
 	{
@@ -36,6 +41,7 @@ class HomepagePresenter extends BasePresenter
 	{
 		// Render
 		$this->template->pricing = $this->pricingModel->getPricing();
+		$this->template->services = $this->serviceModel->getPublicServices();
 	}
 
 	public function renderOrder(): void
@@ -45,7 +51,12 @@ class HomepagePresenter extends BasePresenter
 
 	public function renderService($slug): void
 	{
-		$this->template->slug = $slug;
+		$service = $this->serviceModel->getService($slug);
+		$this->template->service = $service;
+
+		if ($service->gallery_id != NULL)
+			$this->template->images = $this->imageModel->getImagesByGallery($service->gallery_id);
+
 	}
 
 
@@ -73,6 +84,8 @@ class HomepagePresenter extends BasePresenter
 		$form->addSubmit('submit', 'Odeslat');
 
 		$form->onSubmit[] = function (Form $form) {
+			$this->redrawControl('contactForm');
+
 			try {
 				$values = $form->getValues(true);
 
@@ -101,6 +114,40 @@ class HomepagePresenter extends BasePresenter
 			} catch (DriverException $e) {
 				$this->flashMessage('Vaši zprávu se nepodařilo odeslat. Kontaktujte prosím správce webu na info@filipurban.cz', 'danger');
 			}
+		};
+
+		return $form;
+	}
+
+	protected function createComponentCalculator(): Form {
+		$form = new Form;
+
+		$form->addText('starting_position', 'Startovní pozice')
+			->setDefaultValue('Bezděkov, 438 01')
+			->setHtmlAttribute('disabled');
+		$form->addText('loading_position', 'Místo nakládky')
+			->setHtmlAttribute('placeholder', 'Zadejte platnou adresu')
+			->setRequired();
+		$form->addText('unloading_position', 'Místo vykládky')
+			->setDefaultValue('ČOV Žatec, 438 01')
+			->setHtmlAttribute('readonly');
+		$form->addText('ending_position', 'Cílová pozice')
+			->setDefaultValue('Bezděkov, 438 01')
+			->setHtmlAttribute('readonly');
+		$form->addInteger('distance', 'Počet kilometrů')
+			->setHtmlAttribute('readonly');
+		$form->addInteger('transport_price', 'Cena dopravy')
+			->setHtmlAttribute('readonly');
+		$form->addInteger('waste_amount', 'Počet kubických metrů odpadních vod')
+			->setHtmlAttribute('placeholder', 'Zadejte množství')
+			->setRequired();
+		$form->addInteger('disposal_price', 'Cena likvidace')
+			->setHtmlAttribute('readonly');
+		$form->addInteger('total_price', 'Celková cena')
+			->setHtmlAttribute('readonly');
+
+		$form->onSubmit[] = function (Form $form) {
+
 		};
 
 		return $form;

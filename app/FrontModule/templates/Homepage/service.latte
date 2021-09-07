@@ -1,0 +1,30 @@
+{block #content}
+	<section>
+		<div n:ifset="$service" class="container">
+			<h1 n:block="title">{$service->name}</h1>
+			<img n:ifset="$service->cover" src="{$basePath}/upload/services/{$service->id}/{$service->cover}" class="img-fluid" alt="{$service->name}">
+			<div class="desc">{$service->description}</div>
+
+			<div n:if="$service->gallery_id != NULL" class="galerie">
+				<h3 id="galerie">Galerie</h3>
+				<div class="row no-gutters">
+					{foreach $images as $image}
+						{if $iterator->counter < 5}
+							<a href="{$basePath}/upload/galleries/{$service->gallery_id}/{$image->name}" class="col-xsm-6 gal-img col-lg-3" data-lightbox="gallery" data-name="{$image->name}">
+								<img src="{$basePath}/upload/galleries/{$service->gallery_id}/thumbs/{$image->name}" class="lazyload img-fluid" alt="{$image->title}">
+								<div n:if="$iterator->counter === 4" class="n-of-photos">{count($images) - 3}
+									<small>{if count($images) <= 7}další fotografie{else}dalších fotografií{/if}</small>
+								</div>
+							</a>
+						{else}
+							<a href="{$basePath}/upload/galleries/{$service->gallery_id}/{$image->name}" data-lightbox="gallery" data-title="{$image->title}"></a>
+						{/if}
+					{/foreach}
+				</div>
+			</div>
+
+			<a n:href="Homepage:default" class="ajax">Zpět na úvod</a>
+		</div>
+	</section>
+{/block}
+f

@@ -12,6 +12,7 @@ services:
 	repository: App\Service\ProjectModelRepository
 	# Grids
 	- App\AdminModule\Grid\ServiceGridFactory
+	- App\AdminModule\Grid\PricingGridFactory
 	# Models
 	- App\Model\ServiceModel
 	- App\Model\PricingModel
@@ -21,6 +22,7 @@ parameters:
 	admin:
 		menu:
 			Služby: [':Admin:Service:', truck]
+			Ceník: [':Admin:Pricing:', cash-100]
 
 extensions:
     recaptcha: Contributte\ReCaptcha\DI\ReCaptchaExtension

@@ -1,0 +1,13 @@
+{block #title}
+	<i class="icon mdi mdi-cash-100"></i> Ceník
+{/block}
+
+{block #buttons}
+	<a n:href="edit" class="btn btn-success">Přidat položku do ceníku</a>
+{/block}
+
+{block content}
+	<div class="m-admin-fix bg-white pb-2">
+		{control pricingGrid}
+	</div>
+{/block}

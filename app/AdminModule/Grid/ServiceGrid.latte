@@ -6,9 +6,19 @@
 	</td>
 {/define}
 
-{define body-cell-gallery}
+{define body-cell-description}
 	<td>
-		{$record->gallery}
+		{$record->description|striptags|truncate:100|noescape}
+	</td>
+{/define}
+
+{define body-cell-gallery_id}
+	<td class="text-center">
+		{if $record->gallery}
+			<a href="{plink :Admin:Gallery:edit $record->gallery->id}">{$record->gallery->name}</a>
+		{else}
+			<i>Žádná</i>
+		{/if}
 	</td>
 {/define}
 

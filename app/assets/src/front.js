@@ -7,7 +7,7 @@ import "lightbox2/dist/css/lightbox.css";
 // eslint-disable-next-line no-unused-vars
 import lightbox from "lightbox2/dist/js/lightbox";
 
-// import "@/front/cookie";
+import naja from "naja";
 
 import Nette from "@/front/netteForms";
 Nette.initOnLoad();
@@ -36,6 +36,9 @@ function runOnScroll() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	// naja
+	naja.initialize();
+
 	//gdpr
 	$(".gdpr button").click(function() {
 		var date = new Date();

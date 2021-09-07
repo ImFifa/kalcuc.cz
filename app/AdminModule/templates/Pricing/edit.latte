@@ -1,0 +1,41 @@
+{templateType K2D\Core\Template\BaseTemplate}
+{varType Nette\Database\Table\ActiveRow|null $pricing}
+
+{block #title}
+	{$pricing === null ? 'Přidání' : 'Úprava'} ceníkové položky
+{/block}
+
+{block #buttons}
+	<a href="#" class="btn btn-primary" onclick="triggerClick('.btn-save')">
+		Uložit
+	</a>
+	<a n:href="default" class="btn btn-light">
+		Zpět
+	</a>
+{/block}
+
+{block content}
+	<div class="container-fluid bg-white">
+		<div class="row">
+			<div class="col-lg-8">
+				{form editForm}
+					<div class="row">
+						<div class="col-lg-8">
+							<div class="form-group">
+								{label name}{/label}
+								{input name class => 'form-control form-control-sm'}
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="form-group">
+								{label price}{/label}
+								{input price class => 'form-control form-control-sm'}
+							</div>
+						</div>
+					</div>
+					{input save class => 'btn-save d-none'}
+				{/form}
+			</div>
+		</div>
+	</div>
+{/block}

@@ -27,4 +27,10 @@ abstract class BasePresenter extends FrontBasePresenter
 		return $this->boxFactory->create();
 	}
 
+	public function beforeRender(): void
+	{
+		parent::beforeRender();
+		$this->redrawControl('title');
+		$this->redrawControl('content');
+	}
 }
