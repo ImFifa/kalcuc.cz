@@ -111,108 +111,108 @@
 				<h2>Cenová kalkulačka</h2>
 				<p class="text-center m-auto pb-3 d-block">Tato jednoduchá cenová kalkulačka Vám pomůže s odhadem ceny za likvidaci odpadních vod.<br>Stačí zadat adresu nakládky a množství odpadních vod k likvidaci.</p>
 				<div class="calculator-grid">
-				{form calculator, class => 'row calculatorForm'}
-					<div class="col-lg-12">
-						<div class="form-group">
-							{label starting_position}{/label}
+					{form calculator, class => 'row calculatorForm'}
+						<div class="col-lg-12">
+							<div class="form-group">
+								{label starting_position}{/label}
 							{input starting_position class => 'form-control', disabled => true}
-						</div>
-					</div>
-					<div class="col-lg-12 loading-input">
-						{label loading_position}{/label}
-						<div class="form-group">
-							<div class="input-group">
-								{input loading_position class => 'form-control required'}
-								<div class="input-group-append">
-									<button class="btn btn-sm btn-outline-dark" type="button" id="hledej">Hledej</button>
-								</div>
 							</div>
-							<button type="button" id="showMap" onclick="createMap()" class="btn btn-dark" data-toggle="modal" data-target="#mapModal">
-								<i class="fa fa-map-marker-alt" aria-hidden="true"></i> Nalézt na mapě
-							</button>
 						</div>
-						<div id="addressesList">
+						<div class="col-lg-12 loading-input">
+							{label loading_position}{/label}
+							<div class="form-group">
+								<div class="input-group">
+									{input loading_position class => 'form-control required'}
+									<div class="input-group-append">
+										<button class="btn btn-sm btn-outline-dark" type="button" id="hledej">Hledej</button>
+									</div>
+								</div>
+								<button type="button" id="showMap" onclick="createMap()" class="btn btn-dark" data-toggle="modal" data-target="#mapModal">
+									<i class="fa fa-map-marker-alt" aria-hidden="true"></i> Nalézt na mapě
+								</button>
+							</div>
+							<div id="addressesList">
+							</div>
 						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							{label unloading_position}{/label}
+						<div class="col-lg-6">
+							<div class="form-group">
+								{label unloading_position}{/label}
 							{input unloading_position class => 'form-control', disabled => true}
+							</div>
 						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							{label ending_position}{/label}
+						<div class="col-lg-6">
+							<div class="form-group">
+								{label ending_position}{/label}
 							{input ending_position class => 'form-control', disabled => true}
+							</div>
 						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							{label distance}{/label}
-							<div class="input-group">
-								{input distance class => 'form-control', disabled => true}
-								<div class="input-group-append">
-									<span class="input-group-text">km</span>
+						<div class="col-lg-6">
+							<div class="form-group">
+								{label distance}{/label}
+								<div class="input-group">
+									{input distance class => 'form-control', disabled => true}
+									<div class="input-group-append">
+										<span class="input-group-text">km</span>
+									</div>
+								</div>
+								<small class="form-text text-muted">Cena je 40Kč/km. Vzdálenost se automaticky vypočítá po zadání místa nakládky.</small>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								{label transport_price}{/label}
+								<div class="input-group">
+									{input transport_price class => 'form-control', disabled => true}
+									<div class="input-group-append">
+										<span class="input-group-text">Kč</span>
+									</div>
 								</div>
 							</div>
-							<small class="form-text text-muted">Cena je 40Kč/km. Vzdálenost se automaticky vypočítá po zadání místa nakládky.</small>
 						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							{label transport_price}{/label}
+						<div class="col-lg-6">
+							<div class="form-group">
+								{label waste_amount}{/label}
+								<div class="input-group">
+									{input waste_amount class => 'form-control required'}
+									<div class="input-group-append">
+										<span class="input-group-text">m&sup3;</span>
+									</div>
+								</div>
+								<small class="form-text text-muted">Cena je 250Kč/m&sup3;</small>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								{label disposal_price}{/label}
+								<div class="input-group">
+									{input disposal_price class => 'form-control', disabled => true}
+									<div class="input-group-append">
+										<span class="input-group-text">Kč</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12 submit-price">
+							<h5><i class="fa fa-calculator" aria-hidden="true"></i> Odhadovaná cena</h5>
+
 							<div class="input-group">
-								{input transport_price class => 'form-control', disabled => true}
+								<div class="input-group-prepend">
+									<span class="input-group-text">Od</span>
+								</div>
+								{input total_price class => 'form-control', disabled => true}
 								<div class="input-group-append">
 									<span class="input-group-text">Kč</span>
 								</div>
 							</div>
+							<small class="form-text text-muted">Celková cena závisí na náročnosti práce. Cena práce se pohybuje mezi 1000 - 2000 Kč za hodinu.</small>
 						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							{label waste_amount}{/label}
-							<div class="input-group">
-								{input waste_amount class => 'form-control required'}
-								<div class="input-group-append">
-									<span class="input-group-text">m&sup3;</span>
-								</div>
-							</div>
-							<small class="form-text text-muted">Cena je 250Kč/m&sup3;</small>
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div class="form-group">
-							{label disposal_price}{/label}
-							<div class="input-group">
-								{input disposal_price class => 'form-control', disabled => true}
-								<div class="input-group-append">
-									<span class="input-group-text">Kč</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 submit-price">
-						<h5><i class="fa fa-calculator" aria-hidden="true"></i> Odhadovaná cena</h5>
+					{/form}
 
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text">Od</span>
-							</div>
-							{input total_price class => 'form-control', disabled => true}
-							<div class="input-group-append">
-								<span class="input-group-text">Kč</span>
-							</div>
-						</div>
-						<small class="form-text text-muted">Celková cena závisí na náročnosti práce. Cena práce se pohybuje mezi 1000 - 2000 Kč za hodinu.</small>
+					<div class="final-map" style="display: none" id="m"></div>
+					<div class="final-map" id="m2">
+						<i class="fas fa-map-marked-alt"></i>
 					</div>
-				{/form}
-
-				<div class="final-map" style="display: none" id="m"></div>
-				<div class="final-map" id="m2">
-					<i class="fas fa-map-marked-alt"></i>
 				</div>
-			</div>
 			</div>
 		</div>
 	</section>
@@ -223,11 +223,13 @@
 
 			{ifset $images}
 				<div class="galerie">
-					{foreach $images as $image}
-						<a href="{$basePath}/upload/galleries/1/{$image->name}" data-lightbox="gallery" data-name="{$image->name}">
-							<img src="{$basePath}/upload/galleries/1/thumbs/{$image->name}" class="lazyload" alt="{$image->title}">
-						</a>
-					{/foreach}
+					<div class="row">
+						{foreach $images as $image}
+							<a href="{$basePath}/upload/galleries/1/{$image->name}" class="col-sm-4 gal-img col-mg-3 col-lg-2" data-lightbox="gallery" data-name="{$image->name}">
+								<img src="{$basePath}/upload/galleries/1/thumbs/{$image->name}" class="lazyload" alt="{$image->title}">
+							</a>
+						{/foreach}
+					</div>
 				</div>
 			{else}
 				<p>V galerii se aktuálně nenacházejí žádné fotografie.</p>
