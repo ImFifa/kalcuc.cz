@@ -1,12 +1,12 @@
 {block #content}
-	<section>
+	<section class="services">
 		<div n:ifset="$service" class="container">
 			<h1 n:block="title">{$service->name}</h1>
 			<img n:ifset="$service->cover" src="{$basePath}/upload/services/{$service->id}/{$service->cover}" class="img-fluid" alt="{$service->name}">
-			<div class="desc">{$service->description}</div>
+			<div class="desc py-4">{$service->description|noescape}</div>
 
 			<div n:if="$service->gallery_id != NULL" class="galerie">
-				<h3 id="galerie">Galerie</h3>
+				<h4 id="galerie">Galerie</h4>
 				<div class="row no-gutters">
 					{foreach $images as $image}
 						{if $iterator->counter < 5}

@@ -1,6 +1,10 @@
 import "@theme/front/init.scss";
 
+import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/collapse";
+import "bootstrap/js/dist/carousel";
+import "bootstrap/js/dist/util";
+import "bootstrap/js/dist/alert";
 import "bootstrap/js/dist/modal";
 
 import "lightbox2/dist/css/lightbox.css";

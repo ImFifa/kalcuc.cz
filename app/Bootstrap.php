@@ -27,12 +27,11 @@ class Bootstrap
 
 		$configurator->addParameters(Environment::loadEnvParameters());
 
-		$configurator->setDebugMode(true);
-//		$configurator->setDebugMode(
-//			Environment::isEnvDebugMode() ||
-//			Environment::isLocalhost() ||
-//			Environment::hasCookie(CookieGetter::fromEnv()),
-//		);
+		$configurator->setDebugMode(
+			Environment::isEnvDebugMode() ||
+			Environment::isLocalhost() ||
+			Environment::hasCookie(CookieGetter::fromEnv()),
+		);
 		$configurator->enableDebugger(__DIR__ . '/../log');
 
 		$configurator->addConfig(__DIR__ . '/../vendor/simple-cms/core-module/config/config.neon');

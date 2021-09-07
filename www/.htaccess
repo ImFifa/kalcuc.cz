@@ -8,7 +8,7 @@
 # enable cool URL
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-#	 RewriteBase /
+#	RewriteBase /
 
 # 	RewriteCond %{HTTPS} off
 # 	RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
