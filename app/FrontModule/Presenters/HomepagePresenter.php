@@ -42,6 +42,7 @@ class HomepagePresenter extends BasePresenter
 		// Render
 		$this->template->pricing = $this->pricingModel->getPricing();
 		$this->template->services = $this->serviceModel->getPublicServices();
+		$this->template->images = $this->imageModel->getImagesByGallery(1);
 	}
 
 	public function renderOrder(): void

@@ -7,7 +7,7 @@
 				<img class="cover-img" src="{$basePath}/dist/img/no-cover.jpeg" alt="{$service->name}">
 			{/if}
 
-			<h1 n:block="title">{$service->name}</h1>
+			<h1 n:block="title" class="mt-5">{$service->name}</h1>
 			<div class="desc py-3">{$service->description|noescape}</div>
 
 			<div n:if="!empty($images)" class="galerie">
