@@ -222,7 +222,7 @@
 			<h2>Galerie</h2>
 
 			{ifset $images}
-				<div class="images">
+				<div class="galerie">
 					{foreach $images as $image}
 						<a href="{$basePath}/upload/galleries/1/{$image->name}" data-lightbox="gallery" data-name="{$image->name}">
 							<img src="{$basePath}/upload/galleries/1/thumbs/{$image->name}" class="lazyload" alt="{$image->title}">
