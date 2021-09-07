@@ -115,7 +115,7 @@ class ServicePresenter extends BasePresenter
 			}
 
 			$image->save($link . $fileName);
-			$this->service->update(['profile' => $fileName]);
+			$this->service->update(['cover' => $fileName]);
 		}
 	}
 
@@ -131,8 +131,8 @@ class ServicePresenter extends BasePresenter
 
 	public function handleDeleteImage(): void
 	{
-		unlink(WWW . '/upload/services/' . $this->service->id . '/' . $this->service->profile);
-		$this->service->update(['profile' => null]);
+		unlink(WWW . '/upload/services/' . $this->service->id . '/' . $this->service->cover);
+		$this->service->update(['cover' => null]);
 		$this->flashMessage('Náhledový obrázek byl smazán');
 		$this->redirect('this');
 	}
@@ -156,8 +156,8 @@ class ServicePresenter extends BasePresenter
 	{
 		$cropper = $this->cropperComponentFactory->create();
 
-		if ($this->service->profile !== null) {
-			$cropper->setImagePath('upload/services/' . $this->service->id . '/' . $this->service->profile)
+		if ($this->service->cover !== null) {
+			$cropper->setImagePath('upload/services/' . $this->service->id . '/' . $this->service->cover)
 				->setAspectRatio((float) 1);
 		}
 

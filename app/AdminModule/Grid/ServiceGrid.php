@@ -37,8 +37,8 @@ class ServiceGrid extends BaseV2Grid
 
 		$this->addRowAction('edit', 'Upravit', static function (): void {});
 		$this->addRowAction('delete', 'Smazat', static function (ActiveRow $record): void {
-			if ($record->profile) {
-				unlink(WWW . '/upload/services/' . $record->id . '/' . $record->profile);
+			if ($record->cover) {
+				unlink(WWW . '/upload/services/' . $record->id . '/' . $record->cover);
 			}
 
 			$record->delete();

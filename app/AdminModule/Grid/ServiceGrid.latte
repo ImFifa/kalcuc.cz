@@ -14,7 +14,7 @@
 
 {define body-cell-gallery_id}
 	<td class="text-center">
-		{if $record->gallery}
+		{if $record->gallery_id}
 			<a href="{plink :Admin:Gallery:edit $record->gallery->id}">{$record->gallery->name}</a>
 		{else}
 			<i>Žádná</i>
