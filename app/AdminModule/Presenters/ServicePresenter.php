@@ -86,10 +86,6 @@ class ServicePresenter extends BasePresenter
 				$this->flashMessage('Služba upravena');
 			}
 
-			$service->update([
-				'slug' => $service->id . '-' . $values['slug']
-			]);
-
 			$this->redirect('this', ['id' => $service->id]);
 		};
 

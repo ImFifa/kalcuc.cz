@@ -17,8 +17,11 @@ class RouterFactory
 		$router->withModule('Admin')
 			->addRoute('admin/<presenter>/<action>[/<id>]', 'Homepage:default');
 
+		$router->withModule('Front')->addRoute('[<lang=cs (cs)>/]<slug>', 'Homepage:service');
 		$router->withModule('Front')
 			->addRoute('[<lang=cs (cs)>/]<presenter>/<action>', 'Homepage:default');
+
+
 
 		return $router;
 	}

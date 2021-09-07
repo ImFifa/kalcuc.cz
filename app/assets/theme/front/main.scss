@@ -120,14 +120,20 @@ header, .pricing, .contact {
 
 // navbar
 #navbar {
-	background-color: $dark-yellow;
-	color: $black;
+	background-color: $gray-900;
 
 	.navbar-brand {
+		color: $dark-yellow;
 		margin-right: 2rem;
 		font-weight: bold;
 		text-transform: uppercase;
 
+	}
+
+	.navbar-collapse {
+		clip-path: polygon(0 30px, 75% 0, 100% 30px, 100% calc(100% - 30px), 25% 100%, 0 calc(100% - 30px));
+		background-color: #282d33;
+		padding: 3rem;
 	}
 }
 
@@ -217,6 +223,23 @@ header {
 }
 
 // services
+.service {
+	margin: 3rem 0;
+
+	.cover-img {
+		max-width: 100%;
+		width: 800px;
+		height: auto;
+		object-fit: contain;
+		clip-path: polygon(0 20px, 75% 0, 100% 20px, 100% calc(100% - 20px), 0 calc(100% - 20px));
+	}
+
+	.desc {
+		max-width: 100%;
+		width: 1000px;
+		line-height: 150%;
+	}
+}
 .services {
 	margin: 3rem 0;
 
@@ -310,18 +333,57 @@ header {
 .calculator {
 	margin: 3rem 0;
 
+	.calculator-area {
+		padding: 4rem .5rem;
+		background-color: $gray-200;
+		//border-radius: $border-radius * 2;
+		clip-path: polygon(0 30px, 75% 0, 100% 30px, 100% calc(100% - 30px), 25% 100%, 0 calc(100% - 30px));
+
+		p {
+			max-width: 750px;
+			width: 100%;
+		}
+		h2 {
+			text-align: center;
+		}
+	}
+
 	.calculator-grid {
 		display: grid;
 		grid-gap: 1rem;
 		grid-template-columns: 1fr;
+
 	}
 
 	.final-map {
 		margin-top: 2rem;
-		border-radius: $border-radius;
 		max-width: 600px;
 		width: 100%;
 		height: 300px;
+		position: relative;
+		border-radius: $border-radius / 3;
+		//clip-path: polygon(0 30px, 75% 0, 100% 30px, 100% calc(100% - 30px), 25% 100%, 0 calc(100% - 30px));
+
+		&::before {
+			content: "";
+			width: 100%;
+			z-index: 0;
+			height: 100%;
+			position: absolute;
+			background-color: $gray-300;
+			border-radius: $border-radius / 3;
+		}
+
+		i {
+			position: absolute;
+			opacity: .2;
+			z-index: 1;
+			font-size: 100px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+		}
 	}
 }
 
@@ -342,8 +404,10 @@ header {
 
 .calculatorForm {
 	padding: 1rem;
-	border-radius: $border-radius;
-	background-color: $gray-200;
+
+	input, textarea, .btn, .input-group-text {
+		border-radius: $border-radius / 3;
+	}
 
 	.loading-input {
 		.form-group {
@@ -373,7 +437,7 @@ header {
 		padding: 1rem;
 		display: grid;
 		grid-template-columns: 1fr;
-		border-radius: $border-radius;
+		border-radius: $border-radius / 3;
 
 		h5 {
 			margin-bottom: 1rem;
