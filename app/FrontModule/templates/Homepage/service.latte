@@ -2,7 +2,13 @@
 	<section class="services">
 		<div n:ifset="$service" class="container">
 			<h1 n:block="title">{$service->name}</h1>
-			<img n:ifset="$service->cover" src="{$basePath}/upload/services/{$service->id}/{$service->cover}" class="img-fluid" alt="{$service->name}">
+
+			{if $service->cover}
+				<img src="{$basePath}/upload/services/{$service->id}/{$service->cover}" alt="{$service->name}">
+			{else}
+				<img src="{$basePath}/dist/img/no-cover.jpeg" alt="{$service->name}">
+			{/if}
+
 			<div class="desc py-4">{$service->description|noescape}</div>
 
 			<div n:if="$service->gallery_id != NULL" class="galerie">
