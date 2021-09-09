@@ -2,7 +2,6 @@
 
 namespace App\FrontModule\Presenters;
 
-use App\Model\PricingModel;
 use App\Model\ServiceModel;
 use K2D\Gallery\Models\ImageModel;
 use Nette\Application\UI\Form;
@@ -15,9 +14,6 @@ use Nette\Neon\Neon;
 
 class HomepagePresenter extends BasePresenter
 {
-
-	/** @inject */
-	public PricingModel $pricingModel;
 
 	/** @inject */
 	public ImageModel $imageModel;
@@ -49,7 +45,6 @@ class HomepagePresenter extends BasePresenter
 	public function renderDefault(): void
 	{
 		// Render
-		$this->template->pricing = $this->pricingModel->getPricing();
 		$this->template->services = $this->serviceModel->getPublicServices();
 		$this->template->images = $this->imageModel->getImagesByGallery(1);
 	}

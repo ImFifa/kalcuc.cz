@@ -12,10 +12,8 @@ services:
 	repository: App\Service\ProjectModelRepository
 	# Grids
 	- App\AdminModule\Grid\ServiceGridFactory
-	- App\AdminModule\Grid\PricingGridFactory
 	# Models
 	- App\Model\ServiceModel
-	- App\Model\PricingModel
 
 parameters:
 	customTemplatesDir: %appDir%/FrontModule/templates/
