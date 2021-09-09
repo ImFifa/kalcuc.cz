@@ -1,15 +1,37 @@
 {block #content}
+	<!-- Modal -->
+	{foreach $flashes as $flash}
+		<div class="modal fade" id="mailSentModal" tabindex="-1" role="dialog" aria-labelledby="mailSentModalTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="mailSentModalLongTitle">Kontaktní formulář</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						{$flash->message}
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	{/foreach}
+
 	<header>
 		<div class="container">
 			<div class="header-text">
-				<h1 n:block="title">Zpracování odpadních vod Kalcuc Žatec</h1>
-				<p>Jsme firma zabývající se čerpáním, čištěním a kontrolou odpadních jímek.</p>
+				<h1 n:if="heading" n:block="title">{$heading}</h1>
+				<p n:if="subheading">{$subheading}</p>
 				<div class="header-btns">
 					<a href="#cenova-kalkulacka" class="btn btn-primary scroll"><i class="fas fa-calculator"></i> Zjistit cenu</a>
 					<a href="#sluzby" class="btn btn-secondary scroll"><i class="fas fa-truck-moving"></i> Naše služby</a>
 				</div>
 			</div>
-			<img class="header-img" src="{$basePath}/dist/img/car.png" alt="Kalcuc.cz - auto">
+			<img class="header-img" src="{$basePath}/dist/img/kalcuc_car.png" alt="Kalcuc.cz - auto">
 		</div>
 	</header>
 
@@ -47,16 +69,7 @@
 
 	<div class="container">
 		<section class="pricing" id="cenik">
-			<h2>Ceník</h2>
-			{ifset $pricing}
-				<ul>
-					{foreach $pricing as $pItem}
-						<li>{$pItem->name} <span class="pricetag">{$pItem->price}</span></li>
-					{/foreach}
-				</ul>
-			{else}
-				<p>V ceníku aktuálně nejsou žádné položky.</p>
-			{/ifset}
+			{box pricing}
 		</section>
 	</div>
 
@@ -193,7 +206,7 @@
 							</div>
 						</div>
 						<div class="col-lg-12 submit-price">
-							<h5><i class="fa fa-calculator" aria-hidden="true"></i> Odhadovaná cena</h5>
+							<h5><i class="fa fa-calculator" aria-hidden="true"></i> Odhadovaná cena dopravy a likvidace odpadu</h5>
 
 							<div class="input-group">
 								<div class="input-group-prepend">
@@ -203,8 +216,8 @@
 								<div class="input-group-append">
 									<span class="input-group-text">Kč</span>
 								</div>
+								<small class="form-text">K celkové ceně je nutné přípočíst cenu práce, která se podle náročnosti pohybuje mezi 1000 - 2000 Kč za hodinu.</small>
 							</div>
-							<small class="form-text text-muted">Celková cena závisí na náročnosti práce. Cena práce se pohybuje mezi 1000 - 2000 Kč za hodinu.</small>
 						</div>
 					{/form}
 
@@ -257,6 +270,9 @@
 						<li n:ifset="$phone">
 							<i class="fas fa-phone-alt"></i> <a href="tel:{$phone}">{$phone}</a>
 						</li>
+						<li n:ifset="$phone2">
+							<i class="fas fa-phone-alt"></i> <a href="tel:{$phone2}">{$phone2}</a>
+						</li>
 					</ul>
 				</div>
 
@@ -293,7 +309,7 @@
 						{/if}
 					{/foreach}
 
-					<div class="contactForm" n:snippet="contactForm">
+					<div class="contactForm">
 						{form contactForm, class => 'row'}
 							<div class="col-lg-12">
 								<div class="form-group">
@@ -473,8 +489,9 @@
 			}
 
 			// total price
-			total_price.value = (waste_amount_v * 250) + (distance_v * 40);
-
+			if (waste_amount_v >= 0) {
+				total_price.value = (waste_amount_v * 250) + (distance_v * 40);
+			}
 		}
 
 		// vytvoreni mapy

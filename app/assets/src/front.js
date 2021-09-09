@@ -1,17 +1,12 @@
 import "@theme/front/init.scss";
 
-import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/collapse";
-import "bootstrap/js/dist/carousel";
-import "bootstrap/js/dist/util";
-import "bootstrap/js/dist/alert";
 import "bootstrap/js/dist/modal";
+import "bootstrap/js/dist/util";
 
 import "lightbox2/dist/css/lightbox.css";
 // eslint-disable-next-line no-unused-vars
 import lightbox from "lightbox2/dist/js/lightbox";
-
-import naja from "naja";
 
 import Nette from "@/front/netteForms";
 Nette.initOnLoad();
@@ -40,8 +35,14 @@ function runOnScroll() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	// naja
-	naja.initialize();
+	// modal after registration
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	var odeslano = urlParams.get("odeslano");
+	if(odeslano){
+		$("#mailSentModal").modal("show");
+		console.log("modal is shown");
+	}
 
 	//gdpr
 	$(".gdpr button").click(function() {

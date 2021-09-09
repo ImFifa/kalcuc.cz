@@ -3,7 +3,7 @@
 {block #main}
 <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark">
 	<div class="container">
-		<a class="navbar-brand ajax" href="/#top">
+		<a class="navbar-brand" n:href="Homepage:default">
 			Kalcuc.cz
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNav" aria-controls="myNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,37 +12,32 @@
 		<div class="collapse navbar-collapse" id="myNav">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item">
-					<a class="ajax nav-link scroll" href="/#top">Úvod</a>
+					<a n:class="$presenter->isLinkCurrent('Homepage:default') ? 'scroll nav-link' : nav-link" n:href="Homepage:#top">Úvod</a>
 				</li>
 				<li class="nav-item">
-					<a class="ajax nav-link scroll" href="/#o-nas">O nás</a>
+					<a n:class="$presenter->isLinkCurrent('Homepage:default') ? 'scroll nav-link' : nav-link" n:href="Homepage:#o-nas">O nás</a>
 				</li>
 				<li class="nav-item">
-					<a class="ajax nav-link scroll" href="/#sluzby">Služby</a>
+					<a n:class="$presenter->isLinkCurrent('Homepage:default') ? 'scroll nav-link' : nav-link" n:href="Homepage:#sluzby">Služby</a>
 				</li>
 				<li class="nav-item">
-					<a class="ajax nav-link scroll" href="/#cenik">Ceník</a>
+					<a n:class="$presenter->isLinkCurrent('Homepage:default') ? 'scroll nav-link' : nav-link" n:href="Homepage:#cenova-kalkulacka">Cenová kalkulačka</a>
 				</li>
 				<li class="nav-item">
-					<a class="ajax nav-link scroll" href="/#cenova-kalkulacka">Cenová kalkulačka</a>
+					<a n:class="$presenter->isLinkCurrent('Homepage:default') ? 'scroll nav-link' : nav-link" n:href="Homepage:#galerie">Galerie</a>
 				</li>
 				<li class="nav-item">
-					<a class="ajax nav-link scroll" n:href="Homepage:default#galerie">Galerie</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link scroll" href="#kontaktujte-nas">Kontakt</a>
+					<a n:class="$presenter->isLinkCurrent('Homepage:default') ? 'scroll nav-link' : nav-link" n:href="Homepage:#kontaktujte-nas">Kontakt</a>
 				</li>
 			</ul>
-			<a n:href="Homepage:default#kontaktujte-nas" class="btn btn-sm btn-dark">Vytvoření objednávky</a>
+			<a n:class="$presenter->isLinkCurrent('Homepage:default') ? 'scroll btn btn-sm btn-dark' : 'btn btn-sm btn-dark'" n:href="Homepage:#kontaktujte-nas">Vytvoření objednávky</a>
 		</div>
 	</div>
 </nav>
 
 <span id="top"></span>
 
-<main n:snippet="content">
-	{include #content}
-</main>
+{include #content}
 
 <a href="#top" id="scrollTopBtn" class="scroll-top scroll"><i class="fas fa-chevron-up"></i> Nahoru</a>
 
@@ -76,8 +71,6 @@
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="msapplication-config" content="{$basePath}/dist/favicon/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
-
-	<title n:snippet="title">{ifset #title}{include title|striptags|trim}{/ifset}</title>
 
 	<link rel="stylesheet" href="{$basePath}/dist/front.bundle.css?{filemtime(WWW . '/dist/front.bundle.css')}" type="text/css">
 	<script src="https://kit.fontawesome.com/150cafc137.js" crossorigin="anonymous"></script>

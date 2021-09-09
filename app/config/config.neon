@@ -22,7 +22,6 @@ parameters:
 	admin:
 		menu:
 			Služby: [':Admin:Service:', truck]
-			Ceník: [':Admin:Pricing:', cash-100]
 
 extensions:
     recaptcha: Contributte\ReCaptcha\DI\ReCaptchaExtension
