@@ -222,12 +222,9 @@ header {
 	}
 }
 
+
 .galerie {
 	margin-bottom: 3rem;
-
-	h4 {
-		margin-top: 2rem;
-	}
 
 	a {
 		margin: 0 auto;
@@ -268,6 +265,11 @@ header {
 		width: 1000px;
 		line-height: 150%;
 	}
+
+	h4 {
+		margin-top: 2rem;
+	}
+
 }
 .services {
 	margin: 3rem 0;
@@ -364,7 +366,7 @@ header {
 
 	.calculator-area {
 		padding: 4rem .5rem;
-		background-color: $gray-200;
+		background-color: $yellow;
 		//border-radius: $border-radius * 2;
 		clip-path: polygon(0 30px, 75% 0, 100% 30px, 100% calc(100% - 30px), 25% 100%, 0 calc(100% - 30px));
 
@@ -399,7 +401,7 @@ header {
 			z-index: 0;
 			height: 100%;
 			position: absolute;
-			background-color: $gray-300;
+			background-color: darken($dark-yellow, 3%);
 			border-radius: $border-radius / 3;
 		}
 
@@ -428,6 +430,13 @@ header {
 
 	&:active {
 		cursor: grabbing;
+	}
+}
+
+#mapModal {
+	.form-control:disabled, .form-control[readonly] {
+		background-color: $gray-200 !important;
+		border-color: $gray-400;
 	}
 }
 
@@ -461,7 +470,7 @@ header {
 	}
 
 	.submit-price {
-		background-color: $gray-100;
+		background-color: darken($dark-yellow, 3%);
 		margin-top: 2rem;
 		padding: 1rem;
 		display: grid;
@@ -470,6 +479,14 @@ header {
 
 		h5 {
 			margin-bottom: 1rem;
+		}
+
+		.form-control:disabled, .form-control[readonly] {
+			background-color: $gray-200 !important;
+			border-color: $gray-400;
+		}
+		.input-group-text {
+			background-color: $gray-300 !important;
 		}
 	}
 }

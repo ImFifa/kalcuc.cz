@@ -10,6 +10,8 @@ use Nette\Database\DriverException;
 use Nette\Mail\DkimSigner;
 use Nette\Mail\Message;
 use Nette\Mail\SendmailMailer;
+use Nette\Mail\SmtpMailer;
+use Nette\Neon\Neon;
 
 class HomepagePresenter extends BasePresenter
 {
@@ -27,11 +29,18 @@ class HomepagePresenter extends BasePresenter
 	{
 		parent::beforeRender();
 		$vars = $this->configuration->getAllVars();
+		$heading = $vars['heading'];
+		$this->template->heading = $heading;
+		$this->template->subheading = $vars['subheading'];
+
+
 		$phone = $vars['phone'];
+		$phone2 = $vars['phone2'];
 		$email = $vars['email'];
 		$address = $vars['address'];
 		$ico = $vars['ico'];
 		$this->template->phone = $phone;
+		$this->template->phone2 = $phone2;
 		$this->template->email = $email;
 		$this->template->address = $address;
 		$this->template->ico = $ico;
@@ -85,27 +94,32 @@ class HomepagePresenter extends BasePresenter
 		$form->addSubmit('submit', 'Odeslat');
 
 		$form->onSubmit[] = function (Form $form) {
-			$this->redrawControl('contactForm');
-
 			try {
 				$values = $form->getValues(true);
 
 				if (!empty($values)) {
 					$mail = new Message();
+
+					$vars = $this->configuration->getAllVars();
+					if (isset($vars['email']))
+						$ownersEmail = $vars['email'];
+					else
+						$ownersEmail = 'kalcuc@seznam.cz';
+
 					$mail->setFrom($values['email'], $values['name'])
-						->addTo('info@filipurban.cz')
+						->addTo($ownersEmail)
 						->setSubject('Kalcuc.cz - Zpráva z kontaktního formuláře')
 						->setBody($values['message']);
 
-					$options = [
-						'domain' => 'nette.org',
-						'selector' => 'dkim',
-						'privateKey' => file_get_contents('../dkim/dkim.key'),
-						'passPhrase' => '****',
-					];
+					$parameters = Neon::decode(file_get_contents(__DIR__ . "/../../config/server/local.neon"));
 
-					$mailer = new SendmailMailer;
-					$mailer->setSigner(new DkimSigner($options));
+					$mailer = new SmtpMailer([
+						'host' => $parameters['mail']['host'],
+						'username' => $parameters['mail']['username'],
+						'password' => $parameters['mail']['password'],
+						'secure' => $parameters['mail']['secure'],
+					]);
+
 					$mailer->send($mail);
 				}
 
