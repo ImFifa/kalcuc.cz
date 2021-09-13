@@ -145,13 +145,13 @@ class ServicePresenter extends BasePresenter
 	public function handleRotateLeft(string $slug): void
 	{
 		$this->rotateImage($slug, 90);
-		$this->redrawControl('cropper');
+		$this->redrawControl('image');
 	}
 
 	public function handleRotateRight(string $slug): void
 	{
 		$this->rotateImage($slug, -90);
-		$this->redrawControl('cropper');
+		$this->redrawControl('image');
 	}
 
 	protected function createComponentServiceGrid(): ServiceGrid
