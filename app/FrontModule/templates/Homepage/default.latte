@@ -236,13 +236,11 @@
 
 			{ifset $images}
 				<div class="galerie">
-					<div class="row">
 						{foreach $images as $image}
-							<a href="{$basePath}/upload/galleries/1/{$image->name}" class="col-sm-4 gal-img col-mg-3 col-lg-2" data-lightbox="gallery" data-name="{$image->name}">
+							<a href="{$basePath}/upload/galleries/1/{$image->name}" class="gal-img" data-lightbox="gallery" data-name="{$image->name}">
 								<img src="{$basePath}/upload/galleries/1/thumbs/{$image->name}" class="lazyload" alt="{$image->title}">
 							</a>
 						{/foreach}
-					</div>
 				</div>
 			{else}
 				<p>V galerii se aktuálně nenacházejí žádné fotografie.</p>
