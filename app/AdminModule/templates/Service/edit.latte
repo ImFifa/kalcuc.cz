@@ -80,6 +80,12 @@
 						<img src="{$basePath}/upload/services/{$service->id}/{$service->cover}?{filemtime(WWW . '/upload/services/' . $service->id . '/' . $service->cover)}" class="img-fluid" />
 						<div class="position-absolute" style="bottom: 0; width: 100%;">
 							<div class="text-center mb-3">
+								<a n:href="rotateLeft! $service->slug" class="ajax btn btn-light btn-sm">
+									<i class="mdi mdi-rotate-left"></i>
+								</a>
+								<a n:href="rotateRight! $service->slug" class="ajax btn btn-light btn-sm">
+									<i class="mdi mdi-rotate-right"></i>
+								</a>
 								<a n:href="cropImage!" class="ajax btn btn-primary btn-sm">
 									Oříznout
 								</a>
