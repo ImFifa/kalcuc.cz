@@ -1,15 +1,14 @@
 {block #content}
-	<section class="d-flex align-items-center justify-content-center" style="padding: 3rem 0; min-height: 100vh;">
+	<header style="min-height: 100vh;">
 		<div class="container">
-			<div class="row">
-				<div class="col-xl-12">
-					<h2>{block title}Error #404{/block}</h2>
-					<h3>Požadovaná stránka nenalezena</h3>
-				</div>
-				<div class="col-xl-6">
-					<a n:href=":Front:Homepage:" class="btn btn-primary my-5">Zpět na úvod</a>
+			<div class="header-text">
+				<h1 n:if="heading" n:block="title">Požadovanou stránku se nepodařilo vyhledat.</h1>
+				<p n:if="subheading">Zkuste se vrátit zpět na úvod. Jistě tam naleznete vše, co hledáte.</p>
+				<div class="header-btns">
+					<a n:href=":Front:Homepage:" class="btn btn-primary">Úvod</a>
+					<a n:href=":Front:Homepage:#sluzby" class="btn btn-secondary"><i class="fas fa-truck-moving"></i> Naše služby</a>
 				</div>
 			</div>
 		</div>
-	</section>
+	</header>
 {/block}

@@ -56,9 +56,15 @@ class HomepagePresenter extends BasePresenter
 
 	public function renderService($slug): void
 	{
+		// service
 		$service = $this->serviceModel->getService($slug);
-		$this->template->service = $service;
+		if (!$service) {
+			$this->error();
+		} else {
+			$this->template->service = $service;
+		}
 
+		// get service gallery
 		if ($service->gallery_id != NULL)
 			$this->template->images = $this->imageModel->getImagesByGallery($service->gallery_id);
 
