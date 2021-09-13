@@ -401,7 +401,7 @@ header {
 			z-index: 0;
 			height: 100%;
 			position: absolute;
-			background-color: darken($dark-yellow, 3%);
+			background-color: $dark-yellow;
 			border-radius: $border-radius / 3;
 		}
 
@@ -447,6 +447,7 @@ header {
 		border-radius: $border-radius / 3;
 	}
 
+
 	.loading-input {
 		.form-group {
 			display: flex;
@@ -470,7 +471,7 @@ header {
 	}
 
 	.submit-price {
-		background-color: darken($dark-yellow, 3%);
+		background-color: $dark-yellow;
 		margin-top: 2rem;
 		padding: 1rem;
 		display: grid;
@@ -479,14 +480,6 @@ header {
 
 		h5 {
 			margin-bottom: 1rem;
-		}
-
-		.form-control:disabled, .form-control[readonly] {
-			background-color: $gray-200 !important;
-			border-color: $gray-400;
-		}
-		.input-group-text {
-			background-color: $gray-300 !important;
 		}
 	}
 }
