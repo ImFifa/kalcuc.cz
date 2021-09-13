@@ -12,10 +12,12 @@ use K2D\Core\Helper\Helper;
 use K2D\File\AdminModule\Component\DropzoneComponent\DropzoneComponent;
 use K2D\File\AdminModule\Component\DropzoneComponent\DropzoneComponentFactory;
 use K2D\Gallery\Models\GalleryModel;
+use K2D\Gallery\Models\ImageModel;
 use Nette\Application\UI\Form;
 use Nette\Database\Table\ActiveRow;
 use Nette\Http\FileUpload;
 use Nette\Utils\DateTime;
+use Nette\Utils\Image;
 use Nette\Utils\Strings;
 
 
@@ -29,6 +31,9 @@ class ServicePresenter extends BasePresenter
 
 	/** @inject */
 	public GalleryModel $galleries;
+
+	/** @inject */
+	public ImageModel $images;
 
 	/** @var ServiceGridFactory @inject */
 	public $serviceGridFactory;
@@ -137,6 +142,18 @@ class ServicePresenter extends BasePresenter
 		$this->redirect('this');
 	}
 
+	public function handleRotateLeft(string $slug): void
+	{
+		$this->rotateImage($slug, 90);
+		$this->redrawControl('cropper');
+	}
+
+	public function handleRotateRight(string $slug): void
+	{
+		$this->rotateImage($slug, -90);
+		$this->redrawControl('cropper');
+	}
+
 	protected function createComponentServiceGrid(): ServiceGrid
 	{
 		return $this->serviceGridFactory->create();
@@ -171,5 +188,13 @@ class ServicePresenter extends BasePresenter
 	protected function getService(): ?ActiveRow
 	{
 		return $this->serviceModel->get($this->getParameter('id'));
+	}
+
+	private function rotateImage(string $slug, int $angle): void
+	{
+		$service = $this->serviceModel->getService($slug);
+		$imageOriginalPath = WWW . '/upload/services/' . $service->id . '/' . $service->cover;
+		$imageOriginal = Image::fromFile($imageOriginalPath);
+		$imageOriginal->rotate($angle, 0)->save($imageOriginalPath);
 	}
 }
