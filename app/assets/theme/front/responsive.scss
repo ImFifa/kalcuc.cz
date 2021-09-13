@@ -219,6 +219,15 @@
 			}
 		}
 	}
+
+	.galerie {
+		a {
+			img {
+				max-width: 600px;
+				max-height: 270px;
+			}
+		}
+	}
 }
 
 @include media-breakpoint-up(xl) {
