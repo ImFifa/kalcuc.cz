@@ -168,7 +168,7 @@
 										<span class="input-group-text">km</span>
 									</div>
 								</div>
-								<small class="form-text">Cena je 40Kč/km. Vzdálenost se automaticky vypočítá po zadání místa nakládky.</small>
+								<small class="form-text">Cena je {if $pricePerKm}{$pricePerKm}{else}40{/if}Kč/km. Vzdálenost se automaticky vypočítá po zadání místa nakládky.</small>
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -191,7 +191,7 @@
 										<span class="input-group-text">m&sup3;</span>
 									</div>
 								</div>
-								<small class="form-text">Cena je 250Kč/m&sup3;</small>
+								<small class="form-text">Cena je {if $pricePerM3}{$pricePerM3}{else}250{/if}Kč/m&sup3;</small>
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -477,18 +477,23 @@
 			// transport price
 			const distance = calculator.querySelector("#frm-calculator-distance");
 			let distance_v = parseInt(dist, 10);
+
+			// prices
+			let price_per_km = {if $pricePerKm}{$pricePerKm}{else}40{/if};
+			let price_per_m3 = {if $pricePerM3}{$pricePerM3}{else}250{/if};
+
 			distance.value = distance_v;
-			transport_price.value = 40 * distance_v;
+			transport_price.value = price_per_km * distance_v;
 
 			// waste price
 			let waste_amount_v = parseInt(waste_amount.value, 10);
 			if (waste_amount_v >= 0) {
-				disposal_price.value = 250 * waste_amount_v;
+				disposal_price.value = price_per_m3 * waste_amount_v;
 			}
 
 			// total price
 			if (waste_amount_v >= 0) {
-				total_price.value = (waste_amount_v * 250) + (distance_v * 40);
+				total_price.value = (waste_amount_v * price_per_m3) + (distance_v * price_per_km);
 			}
 		}
 

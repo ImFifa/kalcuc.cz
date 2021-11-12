@@ -40,6 +40,10 @@ class HomepagePresenter extends BasePresenter
 		$this->template->email = $email;
 		$this->template->address = $address;
 		$this->template->ico = $ico;
+
+		// calculator prices
+		$this->template->pricePerKm = $vars['price_per_km'];
+		$this->template->pricePerM3 = $vars['price_per_m3'];
 	}
 
 	public function renderDefault(): void
