@@ -21,7 +21,7 @@ const WEBPACK_DEV_SERVER_HOST = process.env.WEBPACK_DEV_SERVER_HOST || "localhos
 const WEBPACK_DEV_SERVER_PORT = parseInt(process.env.WEBPACK_DEV_SERVER_PORT, 10) || 8080;
 
 // Config
-const ROOT_PATH = __dirname;
+const ROOT_PATH = __dirname + "/..";
 const CACHE_PATH = ROOT_PATH + "/temp/webpack";
 
 module.exports = {
@@ -46,21 +46,22 @@ module.exports = {
 				exclude: path => /node_modules/.test(path),
 				loader: "babel-loader",
 				options: {
+					babelrc: true,
 					cacheDirectory: path.join(CACHE_PATH, "babel-loader"),
 				},
 			},
 			{
-				test: /\.(eot|svg|ttf|woff(2)?)(\?v=\d+\.\d+\.\d+)?/,
-				loader: "file-loader",
-				options: {
-					name: "fonts/[name].[hash:8].[ext]",
-				},
+				test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
+				type: "asset/resource",
+				generator : {
+					filename : "font/[name].[hash:8][ext]",
+				}
 			},
 			{
-				test: /\.(png|jpg|gif|ico)$/,
-				loader: "file-loader",
-				options: {
-					name: "img/[name].[ext]",
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				type: "asset/resource",
+				generator : {
+					filename : "img/[name][ext]",
 				}
 			},
 			{
@@ -68,7 +69,12 @@ module.exports = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					"css-loader",
-					{ loader: "postcss-loader", options: { ident: "postcss", plugins: [ require("autoprefixer") ] } }
+					{
+						loader: "postcss-loader",
+						options: {
+							postcssOptions: require(path.join(ROOT_PATH, "tools/postcss.config.js")),
+						}
+					}
 				],
 			},
 			{
@@ -76,7 +82,12 @@ module.exports = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					"css-loader",
-					{ loader: "postcss-loader", options: { ident: "postcss", plugins: [ require("autoprefixer") ] } },
+					{
+						loader: "postcss-loader",
+						options: {
+							postcssOptions: require(path.join(ROOT_PATH, "tools/postcss.config.js")),
+						}
+					},
 					"less-loader"
 				],
 			},
@@ -85,7 +96,12 @@ module.exports = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					"css-loader",
-					{ loader: "postcss-loader", options: { ident: "postcss", plugins: [ require("autoprefixer") ] } },
+					{
+						loader: "postcss-loader",
+						options: {
+							postcssOptions: require(path.join(ROOT_PATH, "tools/postcss.config.js")),
+						}
+					},
 					"sass-loader"
 				],
 			},
@@ -93,8 +109,8 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-			"@theme": path.resolve(__dirname, "app/assets/theme"),
-			"@": path.resolve(__dirname, "app/assets/src"),
+			"@theme": path.join(ROOT_PATH, "app/assets/theme"),
+			"@": path.join(ROOT_PATH, "app/assets/src"),
 		},
 		extensions: [".js"]
 	},
@@ -109,26 +125,28 @@ module.exports = {
 		}),
 
 		// prevent pikaday from including moment.js
-		new webpack.IgnorePlugin(/moment/, /pikaday/),
+		// new webpack.IgnorePlugin(/moment/, /pikaday/),
 
 		// ignore locales from moment.js
-		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+		// new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 
 		// extract css
 		new MiniCssExtractPlugin({
 			filename: !devMode ? "[name].bundle.css" : "[name].bundle.css",
 		}),
 
-		new CopyWebpackPlugin([
-			{ from: path.join(ROOT_PATH, "app/assets/favicon"), to: "./favicon" },
-			{ from: path.join(ROOT_PATH, "app/assets/img"), to: "./img", ignore: ["*.psd", "*.ai"] }
-		])
+		// new CopyWebpackPlugin({
+		// 	patterns: [
+		// 		{ from: path.join(ROOT_PATH, "app/assets/favicon"), to: "./favicon" },
+		// 		{ from: path.join(ROOT_PATH, "app/assets/img"), to: "./img" }
+		// 	]
+		// }),
 	],
 	devtool: "source-map",
 	performance: {
 		hints: false
 	},
-	node: {fs: "empty"},
+	node: {/*fs: "empty"*/},
 };
 
 if (process.env.NODE_ENV === "development") {
@@ -148,7 +166,7 @@ if (process.env.NODE_ENV === "development") {
 		},
 	};
 
-	module.exports = merge(module.exports, development);
+	module.exports = merge.merge(module.exports, development);
 }
 
 if (process.env.NODE_ENV === "production") {
@@ -158,8 +176,8 @@ if (process.env.NODE_ENV === "production") {
 			minimizer: [
 				new TerserPlugin({
 					terserOptions: {
-						cache: `${CACHE_PATH}/webpack/terser`,
-						parallel: true,
+						//cache: `${CACHE_PATH}/webpack/terser`,
+						//parallel: true,
 						ecma: 5,
 						warnings: false,
 						parse: {},
@@ -186,5 +204,5 @@ if (process.env.NODE_ENV === "production") {
 		],
 	};
 
-	module.exports = merge(module.exports, production);
+	module.exports = merge.merge(module.exports, production);
 }
