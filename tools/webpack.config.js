@@ -9,7 +9,7 @@ const merge = require("webpack-merge");
 // Webpack plugins
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 
@@ -108,9 +108,6 @@ module.exports = {
 		]
 	},
 	resolve: {
-		modules: [
-			path.resolve("./node_modules"),
-		],
 		alias: {
 			"@theme": path.join(ROOT_PATH, "app/assets/theme"),
 			"@": path.join(ROOT_PATH, "app/assets/src"),
@@ -127,23 +124,17 @@ module.exports = {
 			Popper: ["popper.js", "default"],
 		}),
 
-		// prevent pikaday from including moment.js
-		// new webpack.IgnorePlugin(/moment/, /pikaday/),
-
-		// ignore locales from moment.js
-		// new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-
 		// extract css
 		new MiniCssExtractPlugin({
 			filename: !devMode ? "[name].bundle.css" : "[name].bundle.css",
 		}),
 
-		// new CopyWebpackPlugin({
-		// 	patterns: [
-		// 		{ from: path.join(ROOT_PATH, "app/assets/favicon"), to: "./favicon" },
-		// 		{ from: path.join(ROOT_PATH, "app/assets/img"), to: "./img" }
-		// 	]
-		// }),
+		new CopyWebpackPlugin({
+			patterns: [
+				{ from: path.join(ROOT_PATH, "app/assets/favicon"), to: "./favicon" },
+				{ from: path.join(ROOT_PATH, "app/assets/img"), to: "./img" },
+			]
+		}),
 	],
 	devtool: "source-map",
 	performance: {
@@ -179,13 +170,11 @@ if (process.env.NODE_ENV === "production") {
 			minimizer: [
 				new TerserPlugin({
 					terserOptions: {
-						//cache: `${CACHE_PATH}/webpack/terser`,
-						//parallel: true,
 						ecma: 5,
 						warnings: false,
 						parse: {},
 						compress: {},
-						mangle: true, // Note `mangle.properties` is `false` by default.
+						mangle: true,
 						module: false,
 						output: null,
 						toplevel: false,
@@ -195,14 +184,11 @@ if (process.env.NODE_ENV === "production") {
 						keep_fnames: false,
 						safari10: true
 					}
-				})
+				}),
+				new CssMinimizerPlugin()
 			]
 		},
 		plugins: [
-			// optimize CSS files
-			new OptimizeCSSAssetsPlugin(),
-
-			// compression can require a lot of compute time
 			new CompressionPlugin()
 		],
 	};
