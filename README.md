@@ -32,3 +32,15 @@ Starter package for building websites on top of K2D.CZ CMS
 - **Change** `/www/skeleton-website` to correspond with location on the server
 - Using `.env` file is recommended and has to be uploaded to server **before** first deploy
 
+## Deprecated `.env` files
+Using `credentials.neon` instead of `.env`
+
+For migrating `.env` to `credentials.neon` use this snippet in `Bootstrap.php`:
+``` php
+$credentialsPath = __DIR__ . '/config/server/credentials.neon';
+
+if (!file_exists($credentialsPath)) {
+	(new Dotenv())->load(__DIR__ . '/../.env');
+	file_put_contents($credentialsPath, Neon::encode(['parameters' => Environment::loadEnvParameters()], true));
+}
+```
