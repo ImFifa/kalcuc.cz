@@ -3,34 +3,29 @@
 namespace App;
 
 use Nette\Configurator;
-use OriNette\DI\Boot\CookieGetter;
 use OriNette\DI\Boot\Environment;
-use Symfony\Component\Dotenv\Dotenv;
+use OriNette\DI\Boot\FileDebugCookieStorage;
 use function define;
 use function dirname;
-use function file_exists;
 
 class Bootstrap
 {
 
 	public static function boot(): Configurator
 	{
-		if (file_exists(__DIR__ . '/../.env')) {
-			$dotenv = new Dotenv();
-			$dotenv->load(__DIR__ . '/../.env');
-		}
-
 		define('WWW', dirname(__DIR__) . '/www');
 
 		$configurator = new Configurator();
 		$configurator->setTempDirectory(__DIR__ . '/../temp');
 
-		$configurator->addParameters(Environment::loadEnvParameters());
+		$cookieStorage = new FileDebugCookieStorage(__DIR__ . '/config/debug.json');
+		$configurator->addServices([
+			'orisai.di.cookie.storage' => $cookieStorage,
+		]);
 
 		$configurator->setDebugMode(
-			Environment::isEnvDebugMode() ||
-			Environment::isLocalhost() ||
-			Environment::hasCookie(CookieGetter::fromEnv()),
+			Environment::isEnvDebug() ||
+			Environment::isCookieDebug($cookieStorage),
 		);
 		$configurator->enableDebugger(__DIR__ . '/../log');
 

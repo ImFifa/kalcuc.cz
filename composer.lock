@@ -161,6 +161,146 @@
             "time": "2022-07-08T10:07:27+00:00"
         },
         {
+            "name": "contributte/scheduler",
+            "version": "v0.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/contributte/scheduler.git",
+                "reference": "eb2c21094fc3563ebbf82c5a280fc59d451af988"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/contributte/scheduler/zipball/eb2c21094fc3563ebbf82c5a280fc59d451af988",
+                "reference": "eb2c21094fc3563ebbf82c5a280fc59d451af988",
+                "shasum": ""
+            },
+            "require": {
+                "contributte/di": "^0.5",
+                "dragonmantank/cron-expression": "^3.0.1",
+                "php": ">=7.2",
+                "symfony/console": "^5.0.0 || ^6.0.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2.0",
+                "ninjify/nunjuck": "^0.4",
+                "ninjify/qa": "^0.13",
+                "phpstan/phpstan": "^1.0",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-nette": "^1.0",
+                "phpstan/phpstan-strict-rules": "^1.0",
+                "tracy/tracy": "^2.6.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Contributte\\Scheduler\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Milan Felix Šulc",
+                    "homepage": "https://f3l1x.io"
+                },
+                {
+                    "name": "Josef Benjac",
+                    "homepage": "http://josefbenjac.com"
+                }
+            ],
+            "description": "PHP job scheduler (cron) with locking",
+            "homepage": "https://github.com/contributte/scheduler",
+            "keywords": [
+                "contributte",
+                "cron",
+                "nette",
+                "scheduler"
+            ],
+            "support": {
+                "issues": "https://github.com/contributte/scheduler/issues",
+                "source": "https://github.com/contributte/scheduler/tree/v0.7.3"
+            },
+            "funding": [
+                {
+                    "url": "https://contributte.org/partners.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/f3l1x",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-02-10T12:08:12+00:00"
+        },
+        {
+            "name": "dragonmantank/cron-expression",
+            "version": "v3.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dragonmantank/cron-expression.git",
+                "reference": "782ca5968ab8b954773518e9e49a6f892a34b2a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dragonmantank/cron-expression/zipball/782ca5968ab8b954773518e9e49a6f892a34b2a8",
+                "reference": "782ca5968ab8b954773518e9e49a6f892a34b2a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0",
+                "webmozart/assert": "^1.0"
+            },
+            "replace": {
+                "mtdowling/cron-expression": "^1.0"
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^1.0",
+                "phpstan/phpstan-webmozart-assert": "^1.0",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cron\\": "src/Cron/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Tankersley",
+                    "email": "chris@ctankersley.com",
+                    "homepage": "https://github.com/dragonmantank"
+                }
+            ],
+            "description": "CRON for PHP: Calculate the next or previous run date and determine if a CRON expression is due",
+            "keywords": [
+                "cron",
+                "schedule"
+            ],
+            "support": {
+                "issues": "https://github.com/dragonmantank/cron-expression/issues",
+                "source": "https://github.com/dragonmantank/cron-expression/tree/v3.3.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/dragonmantank",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-09-10T18:51:20+00:00"
+        },
+        {
             "name": "latte/latte",
             "version": "v2.10.8",
             "source": {
@@ -1296,21 +1436,21 @@
         },
         {
             "name": "nette/php-generator",
-            "version": "v3.6.7",
+            "version": "v3.6.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/php-generator.git",
-                "reference": "b9ba414c9895fd9420887f20eeb4eabde123677f"
+                "reference": "9073c8ac505b5f65af3bc2d1665be7d256e2dbe3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/php-generator/zipball/b9ba414c9895fd9420887f20eeb4eabde123677f",
-                "reference": "b9ba414c9895fd9420887f20eeb4eabde123677f",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/9073c8ac505b5f65af3bc2d1665be7d256e2dbe3",
+                "reference": "9073c8ac505b5f65af3bc2d1665be7d256e2dbe3",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^3.1.2",
-                "php": ">=7.2 <8.2"
+                "php": ">=7.2 <8.3"
             },
             "require-dev": {
                 "nette/tester": "^2.4",
@@ -1358,9 +1498,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/php-generator/issues",
-                "source": "https://github.com/nette/php-generator/tree/v3.6.7"
+                "source": "https://github.com/nette/php-generator/tree/v3.6.8"
             },
-            "time": "2022-03-10T01:51:00+00:00"
+            "time": "2022-09-12T22:13:59+00:00"
         },
         {
             "name": "nette/robot-loader",
@@ -1747,20 +1887,20 @@
         },
         {
             "name": "nette/utils",
-            "version": "v3.2.7",
+            "version": "v3.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "0af4e3de4df9f1543534beab255ccf459e7a2c99"
+                "reference": "02a54c4c872b99e4ec05c4aec54b5a06eb0f6368"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/0af4e3de4df9f1543534beab255ccf459e7a2c99",
-                "reference": "0af4e3de4df9f1543534beab255ccf459e7a2c99",
+                "url": "https://api.github.com/repos/nette/utils/zipball/02a54c4c872b99e4ec05c4aec54b5a06eb0f6368",
+                "reference": "02a54c4c872b99e4ec05c4aec54b5a06eb0f6368",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2 <8.2"
+                "php": ">=7.2 <8.3"
             },
             "conflict": {
                 "nette/di": "<3.0.6"
@@ -1826,9 +1966,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v3.2.7"
+                "source": "https://github.com/nette/utils/tree/v3.2.8"
             },
-            "time": "2022-01-24T11:29:14+00:00"
+            "time": "2022-09-12T23:36:20+00:00"
         },
         {
             "name": "nextras/dbal",
@@ -1979,16 +2119,16 @@
         },
         {
             "name": "nextras/orm",
-            "version": "v4.0.5",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextras/orm.git",
-                "reference": "feaa3e6271671d677ad95264518844fdebc3aeb5"
+                "reference": "2abc593a3bb7a80bdb9ad94f3e9c47ead65ea69f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextras/orm/zipball/feaa3e6271671d677ad95264518844fdebc3aeb5",
-                "reference": "feaa3e6271671d677ad95264518844fdebc3aeb5",
+                "url": "https://api.github.com/repos/nextras/orm/zipball/2abc593a3bb7a80bdb9ad94f3e9c47ead65ea69f",
+                "reference": "2abc593a3bb7a80bdb9ad94f3e9c47ead65ea69f",
                 "shasum": ""
             },
             "require": {
@@ -2051,7 +2191,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nextras/orm/issues",
-                "source": "https://github.com/nextras/orm/tree/v4.0.5"
+                "source": "https://github.com/nextras/orm/tree/v4.0.6"
             },
             "funding": [
                 {
@@ -2059,7 +2199,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-06-19T18:56:23+00:00"
+            "time": "2022-09-07T07:36:49+00:00"
         },
         {
             "name": "nyholm/psr7",
@@ -2405,16 +2545,16 @@
         },
         {
             "name": "orisai/nette-di",
-            "version": "1.0.8",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orisai/nette-di.git",
-                "reference": "97b603a876ed7ca071e3b284598a18e98dbda2f9"
+                "reference": "0495661a3f0ddfa90c412e1b08d8b23ff1ec4c29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orisai/nette-di/zipball/97b603a876ed7ca071e3b284598a18e98dbda2f9",
-                "reference": "97b603a876ed7ca071e3b284598a18e98dbda2f9",
+                "url": "https://api.github.com/repos/orisai/nette-di/zipball/0495661a3f0ddfa90c412e1b08d8b23ff1ec4c29",
+                "reference": "0495661a3f0ddfa90c412e1b08d8b23ff1ec4c29",
                 "shasum": ""
             },
             "require": {
@@ -2427,7 +2567,9 @@
                 "brianium/paratest": "^6.3.0",
                 "infection/infection": "^0.26.0",
                 "latte/latte": "^2.10.0",
+                "nette/http": "^3.0.0",
                 "orisai/coding-standard": "^2.0.0",
+                "orisai/vfs": "^1.0.0",
                 "phpstan/extension-installer": "^1.0.0",
                 "phpstan/phpstan": "^1.0.0",
                 "phpstan/phpstan-deprecation-rules": "^1.0.0",
@@ -2465,9 +2607,9 @@
             ],
             "support": {
                 "issues": "https://github.com/orisai/nette-di/issues",
-                "source": "https://github.com/orisai/nette-di/tree/1.0.8"
+                "source": "https://github.com/orisai/nette-di/tree/1.2.0"
             },
-            "time": "2022-05-06T21:06:23+00:00"
+            "time": "2022-10-02T14:33:40+00:00"
         },
         {
             "name": "orisai/nette-http-client",
@@ -3035,10 +3177,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:K2D-CZ/core.git",
-                "reference": "332dc0bac2c33ab9410a8a00976f52364e2c7950"
+                "reference": "00bd8e2828334fff0051788b794d2b3fabd9f4e7"
             },
             "require": {
                 "contributte/console": "^0.8.0|^0.9.0",
+                "contributte/scheduler": "^0.7.3",
                 "latte/latte": "2.10.8",
                 "librette/presenter-factory": "dev-master",
                 "nette/database": "^3.0.0",
@@ -3078,7 +3221,7 @@
                 "cms",
                 "nette"
             ],
-            "time": "2022-08-19T11:29:05+00:00"
+            "time": "2022-10-02T14:36:26+00:00"
         },
         {
             "name": "simple-cms/file-module",
@@ -3119,16 +3262,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.4.11",
+            "version": "v5.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "535846c7ee6bc4dd027ca0d93220601456734b10"
+                "reference": "3f97f6c7b7e26848a90c0c0cfb91eeb2bb8618be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/535846c7ee6bc4dd027ca0d93220601456734b10",
-                "reference": "535846c7ee6bc4dd027ca0d93220601456734b10",
+                "url": "https://api.github.com/repos/symfony/console/zipball/3f97f6c7b7e26848a90c0c0cfb91eeb2bb8618be",
+                "reference": "3f97f6c7b7e26848a90c0c0cfb91eeb2bb8618be",
                 "shasum": ""
             },
             "require": {
@@ -3198,7 +3341,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v5.4.11"
+                "source": "https://github.com/symfony/console/tree/v5.4.13"
             },
             "funding": [
                 {
@@ -3214,7 +3357,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-22T10:42:43+00:00"
+            "time": "2022-08-26T13:50:20+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3356,16 +3499,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v5.4.11",
+            "version": "v5.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "5c5c37eb2a276d8d7d669dd76688aa1606ee78fb"
+                "reference": "596fd752f00e0205d895cd6b184d135c27bb5d6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/5c5c37eb2a276d8d7d669dd76688aa1606ee78fb",
-                "reference": "5c5c37eb2a276d8d7d669dd76688aa1606ee78fb",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/596fd752f00e0205d895cd6b184d135c27bb5d6a",
+                "reference": "596fd752f00e0205d895cd6b184d135c27bb5d6a",
                 "shasum": ""
             },
             "require": {
@@ -3423,7 +3566,7 @@
             "description": "Provides powerful methods to fetch HTTP resources synchronously or asynchronously",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v5.4.11"
+                "source": "https://github.com/symfony/http-client/tree/v5.4.13"
             },
             "funding": [
                 {
@@ -3439,7 +3582,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-28T13:33:28+00:00"
+            "time": "2022-09-08T18:41:21+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -4096,16 +4239,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.4.11",
+            "version": "v5.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "5eb661e49ad389e4ae2b6e4df8d783a8a6548322"
+                "reference": "2900c668a32138a34118740de3e4d5a701801f53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/5eb661e49ad389e4ae2b6e4df8d783a8a6548322",
-                "reference": "5eb661e49ad389e4ae2b6e4df8d783a8a6548322",
+                "url": "https://api.github.com/repos/symfony/string/zipball/2900c668a32138a34118740de3e4d5a701801f53",
+                "reference": "2900c668a32138a34118740de3e4d5a701801f53",
                 "shasum": ""
             },
             "require": {
@@ -4162,7 +4305,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.4.11"
+                "source": "https://github.com/symfony/string/tree/v5.4.13"
             },
             "funding": [
                 {
@@ -4178,7 +4321,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-24T16:15:25+00:00"
+            "time": "2022-09-01T01:52:16+00:00"
         },
         {
             "name": "tracy/tracy",
@@ -4314,6 +4457,64 @@
                 "source": "https://github.com/uestla/TwiGrid/tree/12.0.5"
             },
             "time": "2022-06-18T11:01:02+00:00"
+        },
+        {
+            "name": "webmozart/assert",
+            "version": "1.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozarts/assert.git",
+                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/11cb2199493b2f8a3b53e7f19068fc6aac760991",
+                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "php": "^7.2 || ^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan": "<0.12.20",
+                "vimeo/psalm": "<4.6.1 || 4.6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5.13"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.10-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Assert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "Assertions to validate method input/output with nice error messages.",
+            "keywords": [
+                "assert",
+                "check",
+                "validate"
+            ],
+            "support": {
+                "issues": "https://github.com/webmozarts/assert/issues",
+                "source": "https://github.com/webmozarts/assert/tree/1.11.0"
+            },
+            "time": "2022-06-03T18:03:27+00:00"
         }
     ],
     "packages-dev": [
