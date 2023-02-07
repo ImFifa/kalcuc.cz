@@ -42,6 +42,13 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: require.resolve("jquery"),
+				loader: "expose-loader",
+				options: {
+					exposes: ["$", "jQuery"],
+				},
+			},
+			{
 				test: /\.js$/,
 				exclude: path => /node_modules/.test(path),
 				loader: "babel-loader",
