@@ -1,20 +1,20 @@
 {
-	"name": "k2d.cz/project-skeleton",
-	"description": "Project skeleton template",
+	"name": "owly-digital/skeleton-website",
+	"description": "Project Skeleton Website Template",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"repositories": [
 		{
 			"type": "git",
-			"url": "git@github.com:K2D-CZ/core.git"
+			"url": "git@github.com:owly-digital/core.git"
 		},
 		{
 			"type": "git",
-			"url": "git@github.com:K2D-CZ/box.git"
+			"url": "git@github.com:owly-digital/box.git"
 		},
 		{
 			"type": "git",
-			"url": "git@github.com:K2D-CZ/file.git"
+			"url": "git@github.com:owly-digital/file.git"
 		}
 	],
 	"require": {
@@ -26,9 +26,9 @@
 		"ext-xmlwriter": "*",
 		"nette/nette": "^3.0.0",
 		"orisai/nette-di": "^1.0.0",
-		"simple-cms/box-module": "dev-master",
-		"simple-cms/core-module": "dev-master",
-		"simple-cms/file-module": "dev-master",
+		"owly-cms/box-module": "dev-master",
+		"owly-cms/core-module": "dev-master",
+		"owly-cms/file-module": "dev-master",
 		"tracy/tracy": "^2.7.6"
 	},
 	"require-dev": {

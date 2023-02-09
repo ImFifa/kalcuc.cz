@@ -28,8 +28,8 @@ module.exports = {
 	mode: devMode ? "development" : "production",
 	context: path.join(ROOT_PATH, "app/assets"),
 	entry: {
-		admin: path.join(ROOT_PATH, "vendor/simple-cms/core-module/assets/src/admin.js"),
-		bridge: path.join(ROOT_PATH, "vendor/simple-cms/core-module/assets/src/bridge.js"),
+		admin: path.join(ROOT_PATH, "vendor/owly-cms/core-module/assets/src/admin.js"),
+		bridge: path.join(ROOT_PATH, "vendor/owly-cms/core-module/assets/src/bridge.js"),
 		front: path.join(ROOT_PATH, "app/assets/src/front.js"),
 	},
 	output: {
