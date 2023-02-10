@@ -28,7 +28,10 @@ module.exports = {
 	mode: devMode ? "development" : "production",
 	context: path.join(ROOT_PATH, "app/assets"),
 	entry: {
-		admin: path.join(ROOT_PATH, "vendor/owly-cms/core-module/assets/src/admin.js"),
+		admin: [
+			path.join(ROOT_PATH, "vendor/owly-cms/core-module/assets/src/admin.js"),
+			"expose-loader?exposes=$,jQuery!jquery"
+		],
 		bridge: path.join(ROOT_PATH, "vendor/owly-cms/core-module/assets/src/bridge.js"),
 		front: path.join(ROOT_PATH, "app/assets/src/front.js"),
 	},
@@ -41,13 +44,6 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			{
-				test: require.resolve("jquery"),
-				loader: "expose-loader",
-				options: {
-					exposes: ["$", "jQuery"],
-				},
-			},
 			{
 				test: /\.js$/,
 				exclude: path => /node_modules/.test(path),
