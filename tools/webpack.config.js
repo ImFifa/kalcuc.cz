@@ -115,6 +115,7 @@ module.exports = {
 		]
 	},
 	resolve: {
+		modules: [path.join(ROOT_PATH, "node_modules")],
 		alias: {
 			"@theme": path.join(ROOT_PATH, "app/assets/theme"),
 			"@": path.join(ROOT_PATH, "app/assets/src"),
