@@ -81,21 +81,21 @@
         },
         {
             "name": "contributte/di",
-            "version": "v0.5.4",
+            "version": "v0.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/contributte/di.git",
-                "reference": "aea13b32567b9f01dc3acc1752c594e32286565f"
+                "reference": "2857d07b15c8d0136038f4daa6930c42491a6f6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/contributte/di/zipball/aea13b32567b9f01dc3acc1752c594e32286565f",
-                "reference": "aea13b32567b9f01dc3acc1752c594e32286565f",
+                "url": "https://api.github.com/repos/contributte/di/zipball/2857d07b15c8d0136038f4daa6930c42491a6f6a",
+                "reference": "2857d07b15c8d0136038f4daa6930c42491a6f6a",
                 "shasum": ""
             },
             "require": {
                 "nette/di": "^3.1.0",
-                "nette/utils": "^3.2.8",
+                "nette/utils": "^3.2.8 || ^4.0",
                 "php": ">=7.2"
             },
             "conflict": {
@@ -103,7 +103,7 @@
             },
             "require-dev": {
                 "nette/bootstrap": "^3.1.4",
-                "nette/robot-loader": "^3.4.2",
+                "nette/robot-loader": "^3.4.2 || ^4.0",
                 "ninjify/nunjuck": "^0.4",
                 "ninjify/qa": "^0.13",
                 "phpstan/phpstan": "^1.9.11",
@@ -141,7 +141,7 @@
             ],
             "support": {
                 "issues": "https://github.com/contributte/di/issues",
-                "source": "https://github.com/contributte/di/tree/v0.5.4"
+                "source": "https://github.com/contributte/di/tree/v0.5.5"
             },
             "funding": [
                 {
@@ -153,7 +153,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-12T18:43:56+00:00"
+            "time": "2023-02-21T08:24:32+00:00"
         },
         {
             "name": "contributte/scheduler",
@@ -1061,16 +1061,16 @@
         },
         {
             "name": "nette/forms",
-            "version": "v3.1.10",
+            "version": "v3.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/forms.git",
-                "reference": "12b4c12e9d65a4c97e10a37cee88fdd14db780b7"
+                "reference": "64cdc2d6796a8fe1265bb21a6ee5e9ff93e2b3a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/forms/zipball/12b4c12e9d65a4c97e10a37cee88fdd14db780b7",
-                "reference": "12b4c12e9d65a4c97e10a37cee88fdd14db780b7",
+                "url": "https://api.github.com/repos/nette/forms/zipball/64cdc2d6796a8fe1265bb21a6ee5e9ff93e2b3a4",
+                "reference": "64cdc2d6796a8fe1265bb21a6ee5e9ff93e2b3a4",
                 "shasum": ""
             },
             "require": {
@@ -1129,9 +1129,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/forms/issues",
-                "source": "https://github.com/nette/forms/tree/v3.1.10"
+                "source": "https://github.com/nette/forms/tree/v3.1.11"
             },
-            "time": "2023-01-19T14:37:56+00:00"
+            "time": "2023-03-08T23:56:24+00:00"
         },
         {
             "name": "nette/http",
@@ -2274,21 +2274,22 @@
         },
         {
             "name": "orisai/auth",
-            "version": "1.0.4",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orisai/auth.git",
-                "reference": "9e35c56fdab1871bdb903b693441574e23fe0b2a"
+                "reference": "9bbec305df401b18dca89d89027fb25473a6ee40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orisai/auth/zipball/9e35c56fdab1871bdb903b693441574e23fe0b2a",
-                "reference": "9e35c56fdab1871bdb903b693441574e23fe0b2a",
+                "url": "https://api.github.com/repos/orisai/auth/zipball/9bbec305df401b18dca89d89027fb25473a6ee40",
+                "reference": "9bbec305df401b18dca89d89027fb25473a6ee40",
                 "shasum": ""
             },
             "require": {
                 "orisai/clock": "^1.1.0",
                 "orisai/exceptions": "^1.0.0",
+                "orisai/translation-contracts": "^1.1.0",
                 "orisai/utils": "^1.0.0",
                 "php": ">=7.4.0 <8.3.0",
                 "symfony/polyfill-php80": "^1.20.0"
@@ -2326,20 +2327,27 @@
             "homepage": "https://github.com/orisai/auth",
             "keywords": [
                 "Authentication",
+                "Policy",
+                "Users",
+                "abac",
+                "access-control",
                 "acl",
                 "auth",
                 "authorization",
+                "login",
                 "orisai",
                 "password",
                 "passwords",
                 "permissions",
+                "rbac",
+                "role",
                 "security"
             ],
             "support": {
                 "issues": "https://github.com/orisai/auth/issues",
-                "source": "https://github.com/orisai/auth/tree/1.0.4"
+                "source": "https://github.com/orisai/auth/tree/2.0.0"
             },
-            "time": "2022-12-09T15:34:57+00:00"
+            "time": "2023-03-01T12:46:54+00:00"
         },
         {
             "name": "orisai/clock",
@@ -2471,21 +2479,21 @@
         },
         {
             "name": "orisai/nette-auth",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orisai/nette-auth.git",
-                "reference": "86ecc3c67c195e369f1be3fb654d7240db93604e"
+                "reference": "74cf57dc6508b58d83bfceca0cf4e4a5591ba6f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orisai/nette-auth/zipball/86ecc3c67c195e369f1be3fb654d7240db93604e",
-                "reference": "86ecc3c67c195e369f1be3fb654d7240db93604e",
+                "url": "https://api.github.com/repos/orisai/nette-auth/zipball/74cf57dc6508b58d83bfceca0cf4e4a5591ba6f8",
+                "reference": "74cf57dc6508b58d83bfceca0cf4e4a5591ba6f8",
                 "shasum": ""
             },
             "require": {
                 "nette/http": "^3.1.5",
-                "orisai/auth": "^1.0.0",
+                "orisai/auth": "^1.0.0|^2.0.0",
                 "orisai/exceptions": "^1.0.0",
                 "orisai/nette-di": "^1.0.7",
                 "php": ">=7.4.0 <8.3.0"
@@ -2524,21 +2532,28 @@
             "homepage": "https://github.com/orisai/nette-auth",
             "keywords": [
                 "Authentication",
+                "Policy",
+                "Users",
+                "abac",
+                "access-control",
                 "acl",
                 "auth",
                 "authorization",
+                "login",
                 "nette",
                 "orisai",
                 "password",
                 "passwords",
                 "permissions",
+                "rbac",
+                "role",
                 "security"
             ],
             "support": {
                 "issues": "https://github.com/orisai/nette-auth/issues",
-                "source": "https://github.com/orisai/nette-auth/tree/1.0.2"
+                "source": "https://github.com/orisai/nette-auth/tree/1.1.0"
             },
-            "time": "2023-02-17T14:50:34+00:00"
+            "time": "2023-03-01T12:56:43+00:00"
         },
         {
             "name": "orisai/nette-di",
@@ -2819,6 +2834,77 @@
             "time": "2023-01-17T21:42:35+00:00"
         },
         {
+            "name": "orisai/translation-contracts",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orisai/translation-contracts.git",
+                "reference": "8c254564bf70997eca6593eb37aeefb1cf8b6b57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orisai/translation-contracts/zipball/8c254564bf70997eca6593eb37aeefb1cf8b6b57",
+                "reference": "8c254564bf70997eca6593eb37aeefb1cf8b6b57",
+                "shasum": ""
+            },
+            "require": {
+                "orisai/exceptions": "^1.0.0",
+                "php": ">=7.4.0 <8.3.0"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.3.0",
+                "infection/infection": "^0.26.0",
+                "orisai/coding-standard": "^3.0.0",
+                "phpstan/extension-installer": "^1.0.0",
+                "phpstan/phpstan": "^1.0.0",
+                "phpstan/phpstan-deprecation-rules": "^1.0.0",
+                "phpstan/phpstan-phpunit": "^1.0.0",
+                "phpstan/phpstan-strict-rules": "^1.0.0",
+                "phpunit/phpunit": "^9.5.0",
+                "staabm/annotate-pull-request-from-checkstyle": "^1.7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/shortcut.php"
+                ],
+                "psr-4": {
+                    "Orisai\\TranslationContracts\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Marek Bartoš",
+                    "homepage": "https://github.com/mabar"
+                }
+            ],
+            "description": "Interface for translator and translatable messages",
+            "homepage": "https://github.com/orisai/translation-contracts",
+            "keywords": [
+                "abstractions",
+                "contracts",
+                "decoupling",
+                "i18n",
+                "interfaces",
+                "internationalization",
+                "interoperability",
+                "l10n",
+                "localization",
+                "orisai",
+                "standards",
+                "translation"
+            ],
+            "support": {
+                "issues": "https://github.com/orisai/translation-contracts/issues",
+                "source": "https://github.com/orisai/translation-contracts/tree/1.1.0"
+            },
+            "time": "2023-02-18T16:24:18+00:00"
+        },
+        {
             "name": "orisai/utils",
             "version": "1.0.1",
             "source": {
@@ -2921,7 +3007,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:owly-digital/core.git",
-                "reference": "51adb63a52deedd1098f6c0943771244f5fe282a"
+                "reference": "dde5272dbecb99336c3f2d574cf064d392df3058"
             },
             "require": {
                 "contributte/console": "^0.8.0|^0.9.0",
@@ -2933,12 +3019,13 @@
                 "nette/utils": "^3.0.0",
                 "nextras/migrations": "^3.1.2",
                 "nextras/orm": "^4.0.3",
-                "orisai/auth": "^1.0.0",
+                "orisai/auth": "^2.0.0",
                 "orisai/exceptions": "^1.1.0",
                 "orisai/nette-auth": "^1.0.0",
                 "orisai/nette-http-client": "^1.0.0",
                 "orisai/nette-monolog": "^1.0.0",
                 "orisai/tracy-pets": "^1.0.0",
+                "orisai/translation-contracts": "^1.1.0",
                 "php": ">= 7.4",
                 "tracy/tracy": "^2.7.0",
                 "uestla/twigrid": "^12.0.0"
@@ -2956,7 +3043,10 @@
             "autoload": {
                 "psr-4": {
                     "K2D\\Core\\": "src"
-                }
+                },
+                "files": [
+                    "src/Model/Log/ulog.php"
+                ]
             },
             "license": [
                 "MIT"
@@ -2966,7 +3056,7 @@
                 "cms",
                 "nette"
             ],
-            "time": "2023-02-23T15:49:55+00:00"
+            "time": "2023-03-08T13:32:33+00:00"
         },
         {
             "name": "owly-cms/file-module",
@@ -2974,7 +3064,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:owly-digital/file.git",
-                "reference": "60147073ab1073c6eb759447c151c93126eb06e7"
+                "reference": "510cff4c2f818ee94afa7e70b008a67db8701269"
             },
             "require": {
                 "owly-cms/core-module": "dev-master",
@@ -3003,7 +3093,7 @@
                 "cms",
                 "nette"
             ],
-            "time": "2023-02-09T00:00:26+00:00"
+            "time": "2023-02-24T18:26:29+00:00"
         },
         {
             "name": "php-http/message-factory",
@@ -3367,16 +3457,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.4.19",
+            "version": "v5.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "dccb8d251a9017d5994c988b034d3e18aaabf740"
+                "reference": "c77433ddc6cdc689caf48065d9ea22ca0853fbd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/dccb8d251a9017d5994c988b034d3e18aaabf740",
-                "reference": "dccb8d251a9017d5994c988b034d3e18aaabf740",
+                "url": "https://api.github.com/repos/symfony/console/zipball/c77433ddc6cdc689caf48065d9ea22ca0853fbd9",
+                "reference": "c77433ddc6cdc689caf48065d9ea22ca0853fbd9",
                 "shasum": ""
             },
             "require": {
@@ -3446,7 +3536,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v5.4.19"
+                "source": "https://github.com/symfony/console/tree/v5.4.21"
             },
             "funding": [
                 {
@@ -3462,7 +3552,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-01T08:32:19+00:00"
+            "time": "2023-02-25T16:59:41+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3533,16 +3623,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v5.4.20",
+            "version": "v5.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "b4d936b657c7952a41e89efd0ddcea51f8c90f34"
+                "reference": "6b88914a7f1bf144df15904f60a19be78a67a3b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/b4d936b657c7952a41e89efd0ddcea51f8c90f34",
-                "reference": "b4d936b657c7952a41e89efd0ddcea51f8c90f34",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/6b88914a7f1bf144df15904f60a19be78a67a3b2",
+                "reference": "6b88914a7f1bf144df15904f60a19be78a67a3b2",
                 "shasum": ""
             },
             "require": {
@@ -3600,7 +3690,7 @@
             "description": "Provides powerful methods to fetch HTTP resources synchronously or asynchronously",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v5.4.20"
+                "source": "https://github.com/symfony/http-client/tree/v5.4.21"
             },
             "funding": [
                 {
@@ -3616,7 +3706,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-25T18:32:18+00:00"
+            "time": "2023-02-17T21:35:35+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -4273,16 +4363,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.4.19",
+            "version": "v5.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "0a01071610fd861cc160dfb7e2682ceec66064cb"
+                "reference": "edac10d167b78b1d90f46a80320d632de0bd9f2f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/0a01071610fd861cc160dfb7e2682ceec66064cb",
-                "reference": "0a01071610fd861cc160dfb7e2682ceec66064cb",
+                "url": "https://api.github.com/repos/symfony/string/zipball/edac10d167b78b1d90f46a80320d632de0bd9f2f",
+                "reference": "edac10d167b78b1d90f46a80320d632de0bd9f2f",
                 "shasum": ""
             },
             "require": {
@@ -4339,7 +4429,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.4.19"
+                "source": "https://github.com/symfony/string/tree/v5.4.21"
             },
             "funding": [
                 {
@@ -4355,20 +4445,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-01T08:32:19+00:00"
+            "time": "2023-02-22T08:00:55+00:00"
         },
         {
             "name": "tracy/tracy",
-            "version": "v2.9.6",
+            "version": "v2.9.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "80533f4bda19ce8138c0fc984743533e2a0e1c5c"
+                "reference": "1c6e9b5bad030fdf49194154c9674201fa6372bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/80533f4bda19ce8138c0fc984743533e2a0e1c5c",
-                "reference": "80533f4bda19ce8138c0fc984743533e2a0e1c5c",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/1c6e9b5bad030fdf49194154c9674201fa6372bb",
+                "reference": "1c6e9b5bad030fdf49194154c9674201fa6372bb",
                 "shasum": ""
             },
             "require": {
@@ -4427,9 +4517,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/tracy/issues",
-                "source": "https://github.com/nette/tracy/tree/v2.9.6"
+                "source": "https://github.com/nette/tracy/tree/v2.9.7"
             },
-            "time": "2023-02-06T15:31:40+00:00"
+            "time": "2023-02-28T13:01:54+00:00"
         },
         {
             "name": "uestla/twigrid",
