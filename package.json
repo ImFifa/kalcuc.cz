@@ -4,7 +4,8 @@
 		"url": "https://www.owly.digital"
 	},
 	"dependencies": {
-		"owly-cms": "file:vendor/owly-cms/core-module/npm"
+		"owly-cms": "file:vendor/owly-cms/core-module/npm",
+		"bootstrap-front": "npm:bootstrap@^4.3.1"
 	},
 	"scripts": {
 		"start": "cross-env NODE_ENV=development webpack --config tools/webpack.config.js --mode development --progress --color",
