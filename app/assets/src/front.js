@@ -1,9 +1,7 @@
 import "@theme/front/init.scss";
 
-import "bootstrap/js/dist/dropdown";
-import "bootstrap/js/dist/collapse";
-
-// import "@/front/cookie";
+import "bootstrap-front/js/dist/dropdown";
+import "bootstrap-front/js/dist/collapse";
 
 import Nette from "@/front/netteForms";
 Nette.initOnLoad();
