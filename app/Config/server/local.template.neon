@@ -17,10 +17,6 @@ dbal:
 #mail:
 #	smtp: true
 #	host:
-#	username: %email.user%
+#	username:
 #	password:
 #	secure: ssl
-
-parameters:
-	email:
-		user:

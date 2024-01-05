@@ -33,8 +33,8 @@ class Bootstrap
 		$configurator->addConfig(__DIR__ . '/../vendor/owly-cms/box-module/config/config.neon');
 		$configurator->addConfig(__DIR__ . '/../vendor/owly-cms/file-module/config/config.neon');
 
-		$configurator->addConfig(__DIR__ . '/config/config.neon');
-		$configurator->addConfig(__DIR__ . '/config/server/local.neon');
+		$configurator->addConfig(__DIR__ . '/Config/config.neon');
+		$configurator->addConfig(__DIR__ . '/Config/server/local.neon');
 		$configurator->addParameters([
 			'rootDir' => dirname(__DIR__),
 			'wwwDir' => dirname(__DIR__) . '/www',
