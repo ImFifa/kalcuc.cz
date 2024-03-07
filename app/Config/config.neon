@@ -11,7 +11,7 @@ services:
 	router: App\RouterFactory::createRouter()
 
 parameters:
-	config:
+	configuration:
 		cms:
 			faviconTemplate: %appDir%/FrontModule/Template/favicon.latte
 	customTemplatesDir: %appDir%/FrontModule/Template/
