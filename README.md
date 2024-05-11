@@ -1,6 +1,6 @@
 # Skeleton website (template)
 
-Starter package for building websites on top of K2D.CZ CMS
+Starter package for building websites on top of owly-cms
 
 ## Installation
 - Create your own repository from this one by clicking **Use this template** green button
