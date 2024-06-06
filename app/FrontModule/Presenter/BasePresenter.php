@@ -2,9 +2,9 @@
 
 namespace App\FrontModule\Presenter;
 
-use K2D\Box\Component\BoxComponent\BoxComponent;
-use K2D\Box\Component\BoxComponent\BoxComponentFactory;
-use K2D\Core\Presenter\FrontBasePresenter;
+use Owly\Box\Component\BoxComponent\BoxComponent;
+use Owly\Box\Component\BoxComponent\BoxComponentFactory;
+use Owly\Core\Presenter\FrontBasePresenter;
 use Nette\Application\Helpers;
 use Nette\HtmlStringable;
 use stdClass;

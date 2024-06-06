@@ -2,14 +2,14 @@
 
 namespace App\Model;
 
-use K2D\Core\Model\AdminRole\AdminRoleRepository;
-use K2D\Core\Model\AdminUser\AdminUserRepository;
-use K2D\Core\Model\AdminUserGrid\AdminUserGridRepository;
-use K2D\Core\Model\ConfigItem\ConfigItemRepository;
-use K2D\Core\Model\Log\LogRepository;
-use K2D\Core\Model\Model as CoreModel;
-use K2D\File\Model\File\FileRepository;
-use K2D\File\Model\Folder\FolderRepository;
+use Owly\Core\Model\AdminRole\AdminRoleRepository;
+use Owly\Core\Model\AdminUser\AdminUserRepository;
+use Owly\Core\Model\AdminUserGrid\AdminUserGridRepository;
+use Owly\Core\Model\ConfigItem\ConfigItemRepository;
+use Owly\Core\Model\Log\LogRepository;
+use Owly\Core\Model\Model as CoreModel;
+use Owly\File\Model\File\FileRepository;
+use Owly\File\Model\Folder\FolderRepository;
 
 /**
  * @property-read AdminUserRepository 		$adminUser
