@@ -8,5 +8,4 @@ require __DIR__ . '/../vendor/autoload.php';
 $configurator = App\Bootstrap::boot();
 $container = $configurator->createContainer();
 $scheduler = $container->getByType(Scheduler::class);
-
 $scheduler->run();
