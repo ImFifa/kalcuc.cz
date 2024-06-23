@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+use Orisai\Scheduler\Scheduler;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$configurator = App\Bootstrap::boot();
+$container = $configurator->createContainer();
+$scheduler = $container->getByType(Scheduler::class);
+
+$scheduler->run();
