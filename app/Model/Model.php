@@ -8,17 +8,19 @@ use Owly\Core\Model\AdminUserGrid\AdminUserGridRepository;
 use Owly\Core\Model\ConfigItem\ConfigItemRepository;
 use Owly\Core\Model\Log\LogRepository;
 use Owly\Core\Model\Model as CoreModel;
+use Owly\Core\Model\SchedulerJobLog\SchedulerJobLogRepository;
 use Owly\File\Model\File\FileRepository;
 use Owly\File\Model\Folder\FolderRepository;
 
 /**
- * @property-read AdminUserRepository 		$adminUser
- * @property-read AdminRoleRepository 		$adminRole
- * @property-read AdminUserGridRepository 	$adminUserGrid
- * @property-read ConfigItemRepository		$configItem
- * @property-read LogRepository				$log
- * @property-read FileRepository			$file
- * @property-read FolderRepository			$folder
+ * @property-read AdminUserRepository 			$adminUser
+ * @property-read AdminRoleRepository 			$adminRole
+ * @property-read AdminUserGridRepository 		$adminUserGrid
+ * @property-read ConfigItemRepository			$configItem
+ * @property-read LogRepository					$log
+ * @property-read FileRepository				$file
+ * @property-read FolderRepository				$folder
+ * @property-read SchedulerJobLogRepository		$schedulerJobLog
  */
 class Model extends CoreModel
 {
