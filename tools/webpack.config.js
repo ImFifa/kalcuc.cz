@@ -26,14 +26,14 @@ const CACHE_PATH = ROOT_PATH + "/temp/webpack";
 
 module.exports = {
 	mode: devMode ? "development" : "production",
-	context: path.join(ROOT_PATH, "app/assets"),
+	context: path.join(ROOT_PATH, "assets"),
 	entry: {
 		admin: [
 			path.join(ROOT_PATH, "vendor/owly-cms/core-module/assets/src/admin.js"),
 			"expose-loader?exposes=$,jQuery!jquery"
 		],
 		bridge: path.join(ROOT_PATH, "vendor/owly-cms/core-module/assets/src/bridge.js"),
-		front: path.join(ROOT_PATH, "app/assets/src/front.js"),
+		front: path.join(ROOT_PATH, "assets/src/front.js"),
 	},
 	output: {
 		path: path.join(ROOT_PATH, "www/dist"),
@@ -113,8 +113,8 @@ module.exports = {
 	resolve: {
 		modules: [path.join(ROOT_PATH, "node_modules")],
 		alias: {
-			"@theme": path.join(ROOT_PATH, "app/assets/theme"),
-			"@": path.join(ROOT_PATH, "app/assets/src"),
+			"@theme": path.join(ROOT_PATH, "assets/theme"),
+			"@": path.join(ROOT_PATH, "assets/src"),
 		},
 		extensions: [".js"]
 	},
@@ -135,8 +135,8 @@ module.exports = {
 
 		new CopyWebpackPlugin({
 			patterns: [
-				{ from: path.join(ROOT_PATH, "app/assets/favicon"), to: "./favicon" },
-				{ from: path.join(ROOT_PATH, "app/assets/img"), to: "./img" },
+				{ from: path.join(ROOT_PATH, "assets/favicon"), to: "./favicon" },
+				{ from: path.join(ROOT_PATH, "assets/img"), to: "./img" },
 			]
 		}),
 	],

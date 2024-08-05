@@ -4,14 +4,13 @@
 		"url": "https://www.owly.digital"
 	},
 	"dependencies": {
-		"owly-cms": "file:vendor/owly-cms/core-module/npm",
-		"bootstrap-front": "npm:bootstrap@^4.3.1"
+		"owly-cms": "file:vendor/owly-cms/core-module/npm"
 	},
 	"scripts": {
 		"start": "cross-env NODE_ENV=development webpack --config tools/webpack.config.js --mode development --progress --color",
 		"watch": "cross-env NODE_ENV=development webpack --config tools/webpack.config.js --mode development --watch --progress --color",
 		"build": "cross-env NODE_ENV=production webpack --config tools/webpack.config.js --mode production --progress --color",
-		"eslint": "eslint --config tools/.eslintrc.js --ext .js app/assets/js/",
-		"eslint-fix": "eslint --config tools/.eslintrc.js --ext .js app/assets/js/ --fix"
+		"eslint": "eslint --config tools/.eslintrc.js --ext .js assets/js/",
+		"eslint-fix": "eslint --config tools/.eslintrc.js --ext .js assets/js/ --fix"
 	}
 }
