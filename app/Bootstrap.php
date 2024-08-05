@@ -27,7 +27,7 @@ class Bootstrap
 			Environment::isEnvDebug() ||
 			Environment::isCookieDebug($cookieStorage),
 		);
-		$configurator->enableDebugger(__DIR__ . '/../log');
+		$configurator->enableTracy(__DIR__ . '/../log');
 
 		$configurator->addConfig(__DIR__ . '/../vendor/owly-cms/core-module/config/config.neon');
 		$configurator->addConfig(__DIR__ . '/../vendor/owly-cms/box-module/config/config.neon');
@@ -35,7 +35,7 @@ class Bootstrap
 
 		$configurator->addConfig(__DIR__ . '/Config/config.neon');
 		$configurator->addConfig(__DIR__ . '/Config/server/local.neon');
-		$configurator->addParameters([
+		$configurator->addStaticParameters([
 			'rootDir' => dirname(__DIR__),
 			'wwwDir' => dirname(__DIR__) . '/www',
 		]);
