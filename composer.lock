@@ -3087,7 +3087,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:owly-digital/core.git",
-                "reference": "8810f6cc268fd6f35a16028a9683f8c89a26e698"
+                "reference": "00745c596ace40c1b7dccb494f72dd92f9622a8f"
             },
             "require": {
                 "latte/latte": "2.11.7",
@@ -3128,7 +3128,7 @@
                 "cms",
                 "nette"
             ],
-            "time": "2024-08-05T15:05:12+00:00"
+            "time": "2024-08-05T15:36:12+00:00"
         },
         {
             "name": "owly-cms/file-module",
