@@ -1,19 +1,18 @@
 <?php declare(strict_types = 1);
 
-namespace App\FrontModule\Presenters;
+namespace App\FrontModule\Presenter;
 
 use App\Model\ServiceModel;
-use K2D\Gallery\Models\ImageModel;
+use Owly\Gallery\Models\ImageModel;
 use Nette\Application\UI\Form;
 use Nette\Database\DriverException;
-use Nette\Mail\DkimSigner;
 use Nette\Mail\Message;
-use Nette\Mail\SendmailMailer;
 use Nette\Mail\SmtpMailer;
 use Nette\Neon\Neon;
 
 class HomepagePresenter extends BasePresenter
 {
+
 
 	/** @inject */
 	public ImageModel $imageModel;
@@ -91,7 +90,7 @@ class HomepagePresenter extends BasePresenter
 			->setRequired('Musíte uvést Vaši emailovou adresu');
 
 		$form->addTextArea('message', 'Text zprávy')
-		->addRule($form::MAX_LENGTH, 'Zpráva je příliš dlouhá', 10000);
+			->addRule($form::MAX_LENGTH, 'Zpráva je příliš dlouhá', 10000);
 
 		$form->addInvisibleReCaptcha('recaptcha')
 			->setMessage('Jste opravdu člověk?');
@@ -116,7 +115,7 @@ class HomepagePresenter extends BasePresenter
 						->setSubject('Kalcuc.cz - Zpráva z kontaktního formuláře')
 						->setBody($values['message']);
 
-					$parameters = Neon::decode(file_get_contents(__DIR__ . "/../../config/server/local.neon"));
+					$parameters = Neon::decode(file_get_contents(__DIR__ . "/../../Config/server/local.neon"));
 
 					$mailer = new SmtpMailer([
 						'host' => $parameters['mail']['host'],

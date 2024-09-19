@@ -16,8 +16,8 @@
 /log/*
 
 # Local
-/app/config/server/local.neon
-/app/config/google_service_account.json
+/app/Config/server/local.neon
+/app/Config/google_service_account.json
 /.env
 .data
 .docker

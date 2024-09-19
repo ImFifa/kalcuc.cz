@@ -1,0 +1,21 @@
+.copyright {
+  padding: 25px;
+  text-align: center;
+  background-color: #ececec;
+  color: #1c1c1c;
+  font-size: .875rem;
+
+  svg {
+    height: 28px;
+    fill: #ff0050;
+    margin-bottom: .5rem;
+  }
+
+  a {
+    color: #1c1c1c;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

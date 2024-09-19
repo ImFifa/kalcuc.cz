@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace App\FrontModule\Presenters;
+namespace App\FrontModule\Presenter;
 
 use Nette;
 use Nette\Application\Responses;
@@ -18,7 +18,7 @@ class ErrorPresenter implements Nette\Application\IPresenter
 		$this->logger = $logger;
 	}
 
-	public function run(Nette\Application\Request $request): Nette\Application\IResponse
+	public function run(Nette\Application\Request $request): Nette\Application\Response
 	{
 		$exception = $request->getParameter('exception');
 
@@ -31,7 +31,7 @@ class ErrorPresenter implements Nette\Application\IPresenter
 		$this->logger->log($exception, ILogger::EXCEPTION);
 
 		return new Responses\CallbackResponse(static function (): void {
-			require __DIR__ . '/../templates/Error/500.phtml';
+			require __DIR__ . '/../Template/Error/500.phtml';
 		});
 	}
 

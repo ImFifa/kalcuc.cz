@@ -1,0 +1,20 @@
+php:
+	date.timezone: Europe/Prague
+	output_buffering: 4096
+
+application:
+	errorPresenter: Front:Error
+	mapping:
+		*: App\*Module\Presenter\*Presenter
+
+services:
+	router: App\RouterFactory::createRouter()
+
+parameters:
+	configuration:
+		cms:
+			faviconTemplate: %appDir%/FrontModule/Template/favicon.latte
+	customTemplatesDir: %appDir%/FrontModule/Template/
+
+orm:
+	model: App\Model\Model
