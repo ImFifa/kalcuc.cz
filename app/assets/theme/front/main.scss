@@ -72,7 +72,7 @@ h2 {
 	margin-bottom: 2rem;
 }
 
-section {
+section:not(.gdpr, .about, #cenova-kalkulacka, .pricing) {
 	padding: 3rem 0;
 }
 
@@ -95,7 +95,6 @@ header, .pricing, .contact {
 // form
 .contactForm {
 	max-width: 600px;
-	text-align: center;
 
 	input[type="text"], input[type="email"], textarea {
 		display: block;
@@ -225,19 +224,20 @@ header {
 
 .galerie {
 	margin-bottom: 3rem;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	align-items: flex-start;
-	gap: 1rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: .5rem;
 
 	a {
+		background-color: $gray-200;
+		padding: 2px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
 		img {
-			max-width: 250px;
-			max-height: 250px;
 			width: 100%;
-			height: 100%;
+			height: auto;
 			object-fit: contain;
 			object-position: center;
 			transition: all .2s ease-in-out;
@@ -286,20 +286,25 @@ header {
 		padding-left: unset;
 
 		li {
+			border: 1px solid $gray-300;
+			box-shadow: 1px 5px 6px 2px rgba($gray-700, 0.1);
 			list-style-type: none;
-			padding: .5rem;
+			padding: 1rem;
+			background-color: $white;
 
 			img {
 				max-width: 100%;
-				width: 400px;
+				width: 100%;
 				max-height: 300px;
 				object-fit: cover;
+				aspect-ratio: 4/3;
+				object-position: center;
 				transition: all .15s ease-in-out;
 			}
 
 			h3 {
 				margin-top: 1rem;
-				font-size: 1.2rem;
+				font-size: 1.1rem;
 				color: $gray-800;
 				transition: all .25s ease-in-out;
 			}
@@ -319,6 +324,14 @@ header {
 			}
 		}
 	}
+}
+
+.contact-us-banner {
+	background-color: #EAD60E !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 // pricing
@@ -362,12 +375,9 @@ header {
 
 // calculator
 .calculator {
-	margin: 3rem 0;
-
 	.calculator-area {
 		padding: 4rem .5rem;
 		background-color: $yellow;
-		//border-radius: $border-radius * 2;
 
 		p {
 			max-width: 750px;
@@ -382,59 +392,87 @@ header {
 		display: grid;
 		grid-gap: 1rem;
 		grid-template-columns: 1fr;
-
-	}
-
-	.final-map {
-		margin-top: 2rem;
-		max-width: 600px;
-		width: 100%;
-		height: 300px;
-		position: relative;
-		//clip-path: polygon(0 30px, 75% 0, 100% 30px, 100% calc(100% - 30px), 25% 100%, 0 calc(100% - 30px));
-
-		&::before {
-			content: "";
-			width: 100%;
-			z-index: 0;
-			height: 100%;
-			position: absolute;
-			background-color: $dark-yellow;
-		}
-
-		i {
-			position: absolute;
-			opacity: .2;
-			z-index: 1;
-			font-size: 100px;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-
-		}
+		background-color: #f6e516;
 	}
 }
 
-#mapa {
+#map {
+	margin-top: 2rem;
 	width: 100%;
-	height: 400px;
-	position: relative;
-	cursor: pointer !important;
+	height: 100%;
+	min-height: 400px;
+}
 
-	&:hover {
-		cursor: pointer !important;
+.autocomplete-items {
+	position: absolute;
+	border: 1px solid #d4d4d4;
+	border-bottom: none;
+	z-index: 999;
+	top: 100%;
+	left: 0;
+	right: 0;
+	max-height: 200px;
+	overflow-y: auto;
+	background-color: white;
+	display: none;
+}
+
+.autocomplete-items div {
+	padding: 10px;
+	cursor: pointer;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+	background-color: #f1f1f1;
+}
+
+/* Overlay a modální okno */
+#loadingOverlay,
+#confirmModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+}
+
+#loadingOverlay .spinner,
+#confirmModal .content {
+	background: white;
+	padding: 20px;
+	border-radius: 8px;
+	text-align: center;
+}
+
+#loadingOverlay .spinner {
+	width: 100px;
+	height: 100px;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
 	}
 
-	&:active {
-		cursor: grabbing;
+	to {
+		transform: rotate(360deg);
 	}
 }
 
-#mapModal {
-	.form-control:disabled, .form-control[readonly] {
-		background-color: $gray-200 !important;
-		border-color: $gray-400;
-	}
+.spinner div {
+	width: 40px;
+	height: 40px;
+	border: 4px solid #f3f3f3;
+	border-top: 4px solid #3498db;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	margin: auto;
 }
 
 .calculatorForm {
@@ -457,25 +495,12 @@ header {
 				position: absolute;
 				top: 2.2rem;
 				left: 0;
-				border-radius: $border-radius;
 			}
 
 			.btn.btn-dark {
 				width: 100%;
 				max-width: 200px;
 			}
-		}
-	}
-
-	.submit-price {
-		background-color: $dark-yellow;
-		margin-top: 2rem;
-		padding: 1rem;
-		display: grid;
-		grid-template-columns: 1fr;
-
-		h5 {
-			margin-bottom: 1rem;
 		}
 	}
 }
@@ -532,10 +557,9 @@ header {
 					font-weight: 900;
 				}
 
-				i {
-					text-align: center;
-					width: 30px;
-					font-size: 1.6rem;
+				svg {
+					min-width: 28px;
+					height: auto;
 					margin-right: .8rem;
 				}
 			}
@@ -578,12 +602,12 @@ footer.main-footer {
 // scroll top
 #scrollTopBtn {
 	display: flex;
-	width: 170px;
-	margin: 0 calc((100% - 170px) / 2);
+	width: auto;
 	max-width: 100%;
 	position: fixed;
 	bottom: 0;
-	padding: .5rem 1rem;
+	right: 0;
+	padding: .5rem;
 	border-radius: $border-radius $border-radius 0 0;
 	z-index: 1000;
 	font-size: 1.1rem;

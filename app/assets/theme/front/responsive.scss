@@ -1,5 +1,4 @@
 @include media-breakpoint-up(sm) {
-
 	header {
 		h1 {
 			font-size: 2.7rem;
@@ -17,6 +16,10 @@
 		}
 	}
 
+	.pricing {
+		margin-bottom: 6rem;
+	}
+
 	// scroll top
 	#scrollTopBtn {
 		margin: unset;
@@ -32,7 +35,7 @@
 
 		}
 
-		i {
+		svg {
 			margin-right: .5rem;
 			color: $primary;
 			font-size: 1.5rem;
@@ -42,8 +45,23 @@
 
 @include media-breakpoint-up(md) {
 
-	section {
-		padding: 5rem 0;
+	.right-column {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	#map {
+		margin-top: unset;
+	}
+
+	.galerie {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.contact-us-banner {
+		padding: 2rem !important;
+		align-items: start;
+		justify-content: start;
 	}
 
 
@@ -88,8 +106,12 @@
 		padding: 6rem 0 4rem 0;
 	}
 
-	.services {
 
+	section:not(.gdpr, .about, #cenova-kalkulacka, .pricing) {
+		padding: 5rem 0;
+	}
+
+	.services {
 		.container {
 			text-align: left;
 		}
@@ -99,7 +121,7 @@
 
 			li {
 				h3 {
-					font-size: 1.4rem;
+					font-size: 1.25rem;
 				}
 			}
 		}
@@ -151,8 +173,11 @@
 		}
 	}
 
-	.calculator {
+	.galerie {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
 
+	.calculator {
 		.calculator-grid {
 			grid-gap: 2rem;
 			grid-template-columns: 1fr 1fr;
@@ -200,6 +225,12 @@
 	.services {
 		ul {
 			grid-template-columns: 1fr 1fr 1fr;
+
+			li {
+				h3 {
+					font-size: 1.3rem;
+				}
+			}
 		}
 	}
 
@@ -211,9 +242,10 @@
 				li {
 					font-size: 1.3rem;
 
-					i {
-						font-size: 2rem;
-						margin-right: 2.5rem;
+					svg {
+						width: 40px;
+						height: auto;
+						margin-right: 1.5rem;
 					}
 				}
 			}
@@ -223,14 +255,19 @@
 	.galerie {
 		a {
 			img {
-				max-width: 600px;
-				max-height: 270px;
+				max-width: 400px;
+				max-height: 180px;
 			}
 		}
 	}
 }
 
 @include media-breakpoint-up(xl) {
+
+
+	.galerie {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	}
 
 	#navbar {
 		.btn {
@@ -256,10 +293,6 @@
 		}
 	}
 
-	section {
-		padding: 7rem 0;
-	}
-
 	.calculatorForm {
 		.submit-price {
 			align-items: center;
@@ -283,6 +316,11 @@
 }
 
 @include media-breakpoint-up(xxl) {
+
+	.galerie {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	}
+
 	.about {
 		margin: -240px 0 -70px 0;
 		padding: 10rem 0 10rem 0;

@@ -1,0 +1,675 @@
+{block #content}
+	<!-- Modal -->
+	{foreach $flashes as $flash}
+		<div class="modal fade" id="mailSentModal" tabindex="-1" role="dialog" aria-labelledby="mailSentModalTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="mailSentModalLongTitle">Kontaktní formulář</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						{$flash->message}
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	{/foreach}
+
+	<style>
+		header {
+			.green-car {
+				display: none;
+			}
+		}
+		@media (min-width: 992px) {
+		    header {
+		        padding-top: 4rem;
+		        padding-bottom: 8rem;
+		    }
+		}
+		@media (min-width: 1200px) {
+			header {
+				h1 {
+					font-size: 3.5rem !important;
+				}
+
+				.container {
+					max-width: 95vw;
+					display: grid;
+					grid-template-columns: 1fr 500px 1fr;
+					gap: 1rem;
+				}
+				.green-car {
+					display: block;
+				}
+
+				.header-text {
+					justify-items: center;
+					text-align: center;
+				}
+			}
+		}
+	</style>
+
+	<header>
+		<div class="container">
+			<img class="header-img green-car" src="{$basePath}/dist/img/green_car.png" alt="Kalcuc.cz - zelené auto">
+			<div class="header-text">
+				<h1 n:if="heading" n:block="title">{$heading}</h1>
+				<p n:if="subheading">{$subheading}</p>
+				<div class="header-btns">
+					<a href="#cenova-kalkulacka" class="btn btn-primary scroll">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V13.5Zm0 2.25h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V18Zm2.498-6.75h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V13.5Zm0 2.25h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V18Zm2.504-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5Zm0 2.25h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V18Zm2.498-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5ZM8.25 6h7.5v2.25h-7.5V6ZM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 0 0 2.25 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0 0 12 2.25Z" />
+						</svg>
+						<span>Zjistit cenu</span>
+					</a>
+					<a href="#sluzby" class="btn btn-secondary scroll">
+						<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+						</svg>
+						<span>Naše služby</span>
+					</a>
+				</div>
+			</div>
+			<img class="header-img" src="{$basePath}/dist/img/blue_car.png" alt="Kalcuc.cz - modré auto">
+		</div>
+	</header>
+
+	<section class="about" id="o-nas">
+		<div class="container">
+			<h2>O nás</h2>
+			<div class="about-text">
+				<div>{box about1}</div>
+				<div>{box about2}</div>
+				<div>{box about3}</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="services" id="sluzby">
+		<div class="container">
+			<h2>Nabízené služby</h2>
+			<ul>
+				{foreach $services as $service}
+					<li>
+						<a n:href="Homepage:service $service->slug">
+							{if $service->cover}
+								<img src="{$basePath}/upload/services/{$service->id}/{$service->cover}" alt="{$service->name}">
+							{else}
+								<img src="{$basePath}/dist/img/no-cover.jpeg" alt="{$service->name}">
+							{/if}
+							<h3>{$service->name}</h3>
+						</a>
+					</li>
+				{/foreach}
+				<li class="contact-us-banner">
+					<h4>Chtěli byste využít naše služby?</h4>
+					<p>Jsme Vám plně k dispozici. Stačí se ozvat.</p>
+					<a href="#kontaktujte-nas" class="btn btn-primary mt-2">Kontaktujte nás</a>
+				</li>
+
+			</ul>
+		</div>
+	</section>
+
+	<div class="container">
+		<section class="pricing" id="cenik">
+			{box pricing}
+		</section>
+	</div>
+
+	<section class="calculator" id="cenova-kalkulacka">
+		<div class="calculator-area">
+			<div class="container">
+				<h2>Cenová kalkulačka</h2>
+				<p class="text-center m-auto pb-3 d-block">Tato jednoduchá cenová kalkulačka Vám pomůže s odhadem ceny za likvidaci odpadních vod.<br>Stačí zadat adresu nakládky a množství odpadních vod k likvidaci.</p>
+				<div class="calculator-grid">
+
+					<div class="left-column">
+						<form id="route-form" class="calculatorForm">
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label>Startovní pozice</label>
+										<input type="text" class="form-control" value="Dukelská 1271, 438 01" readonly />
+									</div>
+								</div>
+
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label>Místo nakládky</label>
+										<div class="autocomplete">
+											<input type="text" class="form-control" id="destination" name="pickupLocation" placeholder="Např. Žatec, Louny..."
+												   required />
+											<div id="autocomplete-list" class="autocomplete-items"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label>Místo vykládky</label>
+										<input type="text" class="form-control" value="ČOV Žatec, 438 01" readonly />
+									</div>
+								</div>
+
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label>Cílová pozice</label>
+										<input type="text" class="form-control" value="Dukelská 1271, 438 01" readonly />
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-6 mb-3">
+									<label>Počet kilometrů</label>
+									<div class="input-group">
+										<input type="text" class="form-control" id="distance-output" readonly />
+										<div class="input-group-prepend">
+											<div class="input-group-text">km</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-6 mb-3">
+									<label>Cena dopravy</label>
+									<div class="input-group">
+										<input type="text" class="form-control" id="transport-cost" readonly />
+										<div class="input-group-append">
+											<div class="input-group-text">Kč</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-6 mb-3">
+									<label>Množství odpadních vod</label>
+									<div class="input-group">
+										<input type="number" class="form-control" id="volume" value="1" min="1" step="1" />
+										<div class="input-group-append">
+											<div class="input-group-text">m³</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-6 mb-3">
+									<label>Cena za množství</label>
+									<div class="input-group">
+										<input type="text" class="form-control" id="amount-cost" readonly />
+										<div class="input-group-append">
+											<div class="input-group-text">Kč</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<hr>
+
+							<div class="row align-items-center">
+								<div class="col-lg-6 mb-3">
+									<label>Celková cena likvidace</label>
+									<div class="input-group">
+										<input type="text" class="form-control" id="total-cost" readonly />
+										<div class="input-group-append">
+											<div class="input-group-text">Kč</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-6 order-lg-first">
+									<button type="submit" class="btn btn-success btn-lg rounded-pill">Vypočítat</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="right-column">
+						<div id="map"></div>
+					</div>
+				</div>
+				<div class="mt-3">
+					{box price_desc}
+				</div>
+			</div>
+		</div>
+
+		<!-- Overlay při načítání -->
+		<div id="loadingOverlay">
+			<div class="spinner">
+				<div></div>
+			</div>
+		</div>
+
+		<!-- Modální okno -->
+		<div id="confirmModal">
+			<div class="content">
+				<p>Chcete vypočítat trasu do vybraného místa?</p>
+				<button id="confirmYes" class="btn btn-success" style="margin-right: 10px;">Ano</button>
+				<button id="confirmNo" class="btn btn-light">Ne</button>
+			</div>
+		</div>
+	</section>
+
+	<section class="gallery" id="galerie">
+		<div class="container">
+			<h2>Galerie</h2>
+
+			{ifset $images}
+				<div class="galerie">
+					{foreach $images as $image}
+						<a href="{$basePath}/upload/galleries/1/{$image->name}" class="gal-img" data-lightbox="gallery" data-name="{$image->name}">
+							<img src="{$basePath}/upload/galleries/1/thumbs/{$image->name}" class="lazyload" alt="{$image->title}">
+						</a>
+					{/foreach}
+				</div>
+			{else}
+				<p>V galerii se aktuálně nenacházejí žádné fotografie.</p>
+			{/ifset}
+		</div>
+	</section>
+
+	<section class="contact" id="kontaktujte-nas">
+		<div class="container">
+
+
+			<div class="contact-grid">
+				<div class="contact-informations">
+					<h3>Kontaktní informace</h3>
+					<ul>
+						<li n:if="!empty($address)">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+								<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+							</svg>
+							<span>{$address}</span>
+						</li>
+						<li n:if="!empty($ico)">
+							<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+								<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9h3m-3 3h3m-3 3h3m-6 1c-.306-.613-.933-1-1.618-1H7.618c-.685 0-1.312.387-1.618 1M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm7 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"/>
+							</svg>
+							<a rel="noopener" href="https://www.podnikatel.cz/rejstrik/martin-gregorik-74815369/" target="_blank">{$ico}</a>
+						</li>
+						<li n:if="!empty($email)">
+							<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+								<path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m3.5 5.5 7.893 6.036a1 1 0 0 0 1.214 0L20.5 5.5M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
+							</svg>
+							<a href="mailto:{$email}">{$email}</a>
+						</li>
+						<li n:if="!empty($phone)">
+							<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+								<path fill-rule="evenodd" d="M5 4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4Zm12 12V5H7v11h10Zm-5 1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H12Z" clip-rule="evenodd"/>
+							</svg>
+							<a href="tel:{$phone}">{$phone}</a>
+						</li>
+						<li n:if="!empty($phone2)">
+							<svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+								<path fill-rule="evenodd" d="M5 4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4Zm12 12V5H7v11h10Zm-5 1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H12Z" clip-rule="evenodd"/>
+							</svg>
+							<a href="tel:{$phone2}">{$phone2}</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="contact-form">
+					<h3>Napište nám!</h3>
+					<!-- Modal -->
+					{foreach $flashes as $flash}
+						{if $flash->type === 'success'}
+							<div class="modal fade" id="registeredModal" tabindex="-1" role="dialog" aria-labelledby="registeredModalTitle" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title" id="registeredModalLongTitle">Odeslání emailu</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											{$flash->message}
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						{else}
+							<div class="alert alert-{$flash->type} alert-dismissible fade show" style="max-width: 600px" role="alert">
+								{$flash->message}
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						{/if}
+					{/foreach}
+
+					<div class="contactForm">
+						{form contactForm, class => 'row'}
+						    {input hp}
+                            {input form_time}
+
+							<div class="col-lg-12">
+								<div class="form-group">
+									{label name}{/label}
+									{input name class => 'form-control, required'}
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group">
+									{label phone}{/label}
+									{input phone class => 'form-control, required'}
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group">
+									{label email}{/label}
+									{input email class => 'form-control, required'}
+								</div>
+							</div>
+
+							<div class="col-lg-12">
+								<div class="form-group agree-checkbox">
+									{label message}{/label}
+									{input message class => 'form-control, required', rows => 5}
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group">
+									<button n:name="submit" class="btn btn-dark submit">
+										Odeslat
+										<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+										</svg>
+									</button>
+								</div>
+							</div>
+						{/form}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{/block}
+
+{block #scripts}
+	<!-- Leaflet JS -->
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+	<script>
+		// Konstanty
+		const dukelska = L.latLng(50.3229475, 13.5531061); // Dukelská
+		const cov = L.latLng(50.3308306, 13.5541394); // ČOV
+		let routeLine = null;
+		let clickMarker = null;
+		let pendingDestination = null;
+		let selectedLatLng = null;
+
+		// Inicializace mapy
+		const map = L.map('map').setView(dukelska, 12).setView(cov, 12);
+		L.tileLayer('https://{ s}.tile.openstreetmap.org/{ z}/{ x}/{ y}.png', {
+			attribution: '&copy; OpenStreetMap contributors'
+		}).addTo(map);
+
+		L.marker(dukelska).addTo(map).bindPopup("Startovní/cílová pozice");
+		L.marker(cov).addTo(map).bindPopup("Místo vykládky");
+
+		// Funkce pro geokódování adresy
+		async function geocodeAddress(address) {
+			const url = `https://nominatim.openstreetmap.org/search?q=${ encodeURIComponent(address)}&format=json&limit=1`;
+
+			const response = await fetch(url, {
+				headers: {
+					'User-Agent': 'WasteCalculatorApp (tvoje@email.cz)'
+				}
+			});
+
+			const data = await response.json();
+
+			if (data.length > 0) {
+				return L.latLng(data[0].lat, data[0].lon);
+			} else {
+				alert("Adresa nebyla nalezena.");
+				return null;
+			}
+		}
+
+		// Reverzní geokódování (z kliknutí na mapu)
+		let lastReverseCall = 0;
+		const MIN_INTERVAL_MS = 1500;
+
+		async function reverseGeocode(lat, lng) {
+			const now = Date.now();
+			if (now - lastReverseCall < MIN_INTERVAL_MS) return "Zkuste znovu...";
+			lastReverseCall = now;
+
+			const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${ lat}&lon=${ lng}&zoom=18&addressdetails=1`;
+
+			try {
+				const response = await fetch(url, {
+					headers: {
+						'User-Agent': 'WasteCalculatorApp (tvoje@email.cz)'
+					}
+				});
+
+				if (!response.ok) return "Chyba při načítání adresy";
+
+				const data = await response.json();
+
+				if (data && data.address) {
+					const address = data.address;
+					let parts = [];
+
+					if (address.postcode) parts.push(address.postcode);
+					if (address.road) parts.push(address.road);
+					if (address.city) parts.push(address.city);
+					if (address.town) parts.push(address.town);
+					if (address.village) parts.push(address.village);
+
+					return parts.filter(Boolean).join(', ') || 'Neznámá adresa';
+				}
+
+				return 'Neznámá adresa';
+
+			} catch (error) {
+				console.error("Chyba při reverzním geokódování:", error);
+				return 'Chyba při načítání adresy';
+			}
+		}
+
+		// Trasa přes OSRM API
+		async function getAndDrawRoute(destinationLatLng) {
+			const url = `https://router.project-osrm.org/route/v1/driving/${ dukelska.lng},${ dukelska.lat};${ destinationLatLng.lng},${ destinationLatLng.lat};${ cov.lng},${ cov.lat};${ dukelska.lng},${ dukelska.lat}?continue_straight=false&overview=full&geometries=geojson`;
+
+			try {
+				const response = await fetch(url);
+				const data = await response.json();
+
+				if (data.routes && data.routes.length > 0) {
+					const route = data.routes[0].geometry;
+
+					// Odstraň starou trasu
+					if (routeLine) map.removeLayer(routeLine);
+
+					// Vykresli novou trasu
+					routeLine = L.geoJSON(route, {
+						color: "#ff0000",
+						weight: 5,
+						opacity: 0.8
+					}).addTo(map);
+
+					// Spočítej všechny body trasy pro fitBounds
+					const coordinates = route.coordinates.map(coord => [coord[1], coord[0]]); // [lat, lng]
+					const bounds = L.latLngBounds(coordinates);
+
+					// Přizpůsob měřítko mapy, aby byla vidět celá trasa
+					map.fitBounds(bounds, {
+						padding: [50, 50],
+						maxZoom: 14
+					});
+
+					// Spočítej vzdálenost a ceny
+					const distanceKm = (data.routes[0].distance / 1000).toFixed(1);
+					document.getElementById('distance-output').value = distanceKm;
+
+					const volume = parseInt(document.getElementById('volume').value) || 1;
+					const transportCost = (distanceKm * 49).toFixed(0);
+					const disposalCost = volume * 330;
+					const totalCost = parseInt(transportCost) + disposalCost;
+
+					document.getElementById('transport-cost').value = transportCost;
+					document.getElementById('amount-cost').value = disposalCost;
+					document.getElementById('total-cost').value = totalCost;
+
+				} else {
+					alert("Trasa nenalezena.");
+				}
+			} catch (error) {
+				console.error("Chyba při volání OSRM API:", error);
+				alert("Nepodařilo se načíst trasu.");
+			}
+		}
+
+		// Událost formuláře
+		document.getElementById('route-form').addEventListener('submit', async function (e) {
+			e.preventDefault();
+
+			if (clickMarker) {
+				map.removeLayer(clickMarker);
+				clickMarker = null;
+			}
+
+			document.getElementById('loadingOverlay').style.display = 'flex';
+			const address = document.getElementById('destination').value.trim();
+			if (!address) return alert("Zadejte prosím platnou adresu.");
+
+			let destination;
+
+			if (selectedLatLng) {
+				destination = selectedLatLng;
+			} else {
+				destination = await geocodeAddress(address);
+			}
+
+			if (!destination) {
+				document.getElementById('loadingOverlay').style.display = 'none';
+				return;
+			}
+
+			document.getElementById('loadingOverlay').style.display = 'none';
+
+			clickMarker = L.marker(destination, { draggable: false })
+					.addTo(map)
+					.bindPopup(`Místo nakládky: ${ input.value}`)
+					.openPopup();
+
+			getAndDrawRoute(destination);
+		});
+
+		// Našeptávání při psaní do pole
+		const input = document.getElementById('destination');
+		const autocompleteList = document.getElementById('autocomplete-list');
+
+		input.addEventListener('input', async function () {
+			const value = this.value.trim();
+			autocompleteList.innerHTML = '';
+			if (value.length < 3) return;
+
+			selectedLatLng = null;
+
+			const url = `https://nominatim.openstreetmap.org/search?q=${ encodeURIComponent(value)}&format=json&countrycodes=cz&accept-language=cs`;
+
+			try {
+				const response = await fetch(url, {
+					headers: {
+						'User-Agent': 'WasteCalculatorApp (tvoje@email.cz)'
+					}
+				});
+
+				const results = await response.json();
+
+				if (results.length === 0) {
+					autocompleteList.style.display = 'none';
+					return;
+				}
+
+				autocompleteList.style.display = 'block';
+
+				results.forEach(item => {
+					const div = document.createElement('div');
+					div.textContent = item.display_name;
+					div.addEventListener('click', function () {
+						input.value = item.display_name;
+						autocompleteList.innerHTML = '';
+						document.getElementById('route-form').dispatchEvent(new Event('submit'));
+					});
+					autocompleteList.appendChild(div);
+				});
+
+			} catch (error) {
+				console.error("Chyba při volání Nominatim API:", error);
+			}
+		});
+
+		// Skrytí nabídky při kliknutí mimo
+		document.addEventListener('click', function (e) {
+			if (!input.contains(e.target)) {
+				autocompleteList.style.display = 'none';
+			}
+		});
+
+		// Kliknutí na mapu → vyber cíl
+		map.on('click', async function (e) {
+			const lat = e.latlng.lat;
+			const lng = e.latlng.lng;
+			const destination = L.latLng(lat, lng);
+
+			if (clickMarker) map.removeLayer(clickMarker); // Odstraníme starý marker
+
+			document.getElementById('loadingOverlay').style.display = 'flex';
+			const addressLabel = await reverseGeocode(lat, lng);
+			document.getElementById('loadingOverlay').style.display = 'none';
+
+			// Nastavíme nový marker a zachováme pozici
+			clickMarker = L.marker(destination, { draggable: false })
+					.addTo(map)
+					.bindPopup(`Místo nakládky: ${ addressLabel}`)
+					.openPopup();
+
+			input.value = addressLabel;
+			selectedLatLng = destination; // Uložení souřadnic pro submit
+			showConfirmModal(destination);
+		});
+
+		// Modální okno
+		function showConfirmModal(destination) {
+			pendingDestination = destination;
+			document.getElementById('confirmModal').style.display = 'flex';
+		}
+
+		document.getElementById('confirmYes').addEventListener('click', () => {
+			document.getElementById('confirmModal').style.display = 'none';
+			if (pendingDestination) {
+				getAndDrawRoute(pendingDestination);
+				pendingDestination = null;
+			}
+		});
+
+		document.getElementById('confirmNo').addEventListener('click', () => {
+			document.getElementById('confirmModal').style.display = 'none';
+			pendingDestination = null;
+		});
+	</script>
+{/block}

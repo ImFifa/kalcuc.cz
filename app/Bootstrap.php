@@ -3,39 +3,42 @@
 namespace App;
 
 use Nette\Configurator;
+use OriNette\DI\Boot\CookieGetter;
 use OriNette\DI\Boot\Environment;
-use OriNette\DI\Boot\FileDebugCookieStorage;
+use Symfony\Component\Dotenv\Dotenv;
 use function define;
 use function dirname;
+use function file_exists;
 
 class Bootstrap
 {
 
 	public static function boot(): Configurator
 	{
+		if (file_exists(__DIR__ . '/../.env')) {
+			$dotenv = new Dotenv();
+			$dotenv->load(__DIR__ . '/../.env');
+		}
+
 		define('WWW', dirname(__DIR__) . '/www');
 
 		$configurator = new Configurator();
 		$configurator->setTempDirectory(__DIR__ . '/../temp');
 
-		$cookieStorage = new FileDebugCookieStorage(__DIR__ . '/Config/debug.json');
-		$configurator->addServices([
-			'orisai.di.cookie.storage' => $cookieStorage,
-		]);
+		$configurator->addParameters(Environment::loadEnvParameters());
 
-		$configurator->setDebugMode(
-			Environment::isEnvDebug() ||
-			Environment::isCookieDebug($cookieStorage),
-		);
-		$configurator->enableTracy(__DIR__ . '/../log');
+		//$configurator->setDebugMode(true);
+		$configurator->setDebugMode(false);
+		$configurator->enableDebugger(__DIR__ . '/../log');
 
-		$configurator->addConfig(__DIR__ . '/../vendor/owly-cms/core-module/config/config.neon');
-		$configurator->addConfig(__DIR__ . '/../vendor/owly-cms/box-module/config/config.neon');
-		$configurator->addConfig(__DIR__ . '/../vendor/owly-cms/file-module/config/config.neon');
+		$configurator->addConfig(__DIR__ . '/../vendor/simple-cms/core-module/config/config.neon');
+		$configurator->addConfig(__DIR__ . '/../vendor/simple-cms/box-module/config/config.neon');
+		$configurator->addConfig(__DIR__ . '/../vendor/simple-cms/file-module/config/config.neon');
+		$configurator->addConfig(__DIR__ . '/../vendor/simple-cms/gallery-module/config/config.neon');
 
-		$configurator->addConfig(__DIR__ . '/Config/config.neon');
-		$configurator->addConfig(__DIR__ . '/Config/server/local.neon');
-		$configurator->addStaticParameters([
+		$configurator->addConfig(__DIR__ . '/config/config.neon');
+		$configurator->addConfig(__DIR__ . '/config/server/local.neon');
+		$configurator->addParameters([
 			'rootDir' => dirname(__DIR__),
 			'wwwDir' => dirname(__DIR__) . '/www',
 		]);
